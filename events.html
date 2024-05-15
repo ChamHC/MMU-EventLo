@@ -3,40 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="js/events.js"></script>
+    <link rel="icon" href="images/icon.png">
     <link rel="stylesheet" href="css/resetStyle.css">
     <link rel="stylesheet" href="css/headerStyle.css">
     <link rel="stylesheet" href="css/footerStyle.css">
-    <title>MMU Event Organizer | Events</title>
-    <style>
-        .search{
-            margin-top: 60px;
-            text-align: center;
-        }
-        .search input#searchBar{
-            width: 95%;
-            height: 40px;
-            border-radius: 10px;
-            text-align: center;
-            display: inline-block;
-        }
-        .search img#searchIcon{
-            height: 40px;
-            cursor: pointer;
-            display: inline-block;
-            vertical-align: middle;
-        }
-        .search hr{
-            width: 98%;
-            margin: 10px auto;
-            height: 3px;
-            background-color: black;
-        }
-    </style>
+    <link rel="stylesheet" href="css/searchStyle.css">
+    <link rel="stylesheet" href="css/eventsStyle.css">
+    <script src="js/events.js"></script>
+    <title>Events</title>
 </head>
 <body>
     <header>
-        <img src="images/logo.png" alt="MMU Event Organizer" class="logo">
+        <a href="index.html"><img src="images/logo.png" alt="MMU Event Organizer" class="logo"></a>
         <nav class="main-nav">
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -56,23 +34,81 @@
     </header>
     <div class="search">
         <input type="text" id="searchBar" placeholder="Search...">
-        <img src="images/searchIcon.png" alt="Search" id="searchIcon" onclick="searchEvents()">
-        <hr>
+        <img src="images/searchIcon.png" alt="Search" id="searchIcon" onclick="searchEvents()"><hr>
     </div>
     <div class="main">
-        <a>EVENTS GO HERE</a>
+        <div class="event-container">
+            <img src="images/logo.png" alt="Event Cover Image">
+            <div class="event-details">
+                <h2>Event Name</h2><hr>
+                <p id="hostedBy">Hosted by <span id="host"> Write the name of host here</span></p>
+                <p>Date and Time: <span id="dateAndTime">Write date and time of event here</span></p>
+                <p>Venue: <span id="venue">Write the venue of event here</span></p>
+                <p>Fee: <span id="fee">Write fee to participate here</span></p>
+                <p>Capacity: <span id="capacity">Write participant capacity here</span></p>
+                <p>Description: <br><span id="description">
+                    write description here write description here write description here write description here
+                    write description here write description here write description here write description here
+                    write description here write description here write description here write description here
+                    write description here write description here write description here write description here
+                    write description here write description here write description here write description here
+                </span></p>
+                <button id="leaveButton" onclick="">Leave</button>
+                <button id="announcementButton" onclick="">Announcement</button>
+            </div>
+        </div>
+        <div class="event-container">
+            <img src="images/logo.png" alt="Event Cover Image">
+            <div class="event-details">
+                <h2>Event Name</h2><hr>
+                <p id="hostedBy">Hosted by <span id="host"> Write the name of host here</span></p>
+                <p>Date and Time: <span id="dateAndTime">Write date and time of event here</span></p>
+                <p>Venue: <span id="venue">Write the venue of event here</span></p>
+                <p>Fee: <span id="fee">Write fee to participate here</span></p>
+                <p>Capacity: <span id="capacity">Write participant capacity here</span></p>
+                <p>Description: <br><span id="description">
+                    write description here write description here write description here write description here
+                    write description here write description here write description here write description here
+                    write description here write description here write description here write description here
+                    write description here write description here write description here write description here
+                    write description here write description here write description here write description here
+                </span></p>
+                <button id="leaveButton" onclick="">Leave</button>
+                <button id="announcementButton" onclick="">Announcement</button>
+            </div>
+        </div>
+        <div class="event-container">
+            <img src="images/logo.png" alt="Event Cover Image">
+            <div class="event-details">
+                <h2>Event Name</h2><hr>
+                <p id="hostedBy">Hosted by <span id="host"> Write the name of host here</span></p>
+                <p>Date and Time: <span id="dateAndTime">Write date and time of event here</span></p>
+                <p>Venue: <span id="venue">Write the venue of event here</span></p>
+                <p>Fee: <span id="fee">Write fee to participate here</span></p>
+                <p>Capacity: <span id="capacity">Write participant capacity here</span></p>
+                <p>Description: <br><span id="description">
+                    write description here write description here write description here write description here
+                    write description here write description here write description here write description here
+                    write description here write description here write description here write description here
+                    write description here write description here write description here write description here
+                    write description here write description here write description here write description here
+                </span></p>
+                <button id="leaveButton" onclick="">Leave</button>
+                <button id="announcementButton" onclick="">Announcement</button>
+            </div>
+        </div>
     </div>
     <footer>
         <h1>Connect With Us</h1>
         <nav class="footer-nav">
             <ul>
-                <li><img src="images/social/facebook.png" alt="Facebook"></li>
-                <li><img src="images/social/instagram.png" alt="Instagram"></li>
-                <li><img src="images/social/youtube.png" alt="Youtube"></li>
-                <li><img src="images/social/x.png" alt="X"></li>
-                <li><img src="images/social/tiktok.png" alt="TikTok"></li>
-                <li><img src="images/social/linkedin.png" alt="LinkedIn"></li>
-                <li><img src="images/social/flickr.png" alt="Flickr"></li>
+                <li><a href="https://www.facebook.com/mmumalaysia/"><img src="images/social/facebook.png" alt="Facebook"></a></li>
+                <li><a href="https://www.instagram.com/mmumalaysia/"><img src="images/social/instagram.png" alt="Instagram"></a></li>
+                <li><a href="https://www.youtube.com/user/mmumalaysiatv"><img src="images/social/youtube.png" alt="Youtube"></a></li>
+                <li><a href="https://twitter.com/mmumalaysia"><img src="images/social/x.png" alt="X"></a></li>
+                <li><a href="https://www.tiktok.com/@mmumalaysia"><img src="images/social/tiktok.png" alt="TikTok"></a></li>
+                <li><a href="https://www.linkedin.com/school/mmumalaysia/"><img src="images/social/linkedin.png" alt="LinkedIn"></a></li>
+                <li><a href="https://www.flickr.com/photos/mmumalaysia"><img src="images/social/flickr.png" alt="Flickr"></a></li>
             </ul>
         </nav>
         <p>© 2020 MULTIMEDIA UNIVERSITY. ALL RIGHTS RESERVED.</p>
