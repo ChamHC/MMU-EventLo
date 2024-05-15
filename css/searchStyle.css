@@ -1,0 +1,23 @@
+.search{
+    margin-top: 60px;
+    text-align: center;
+}
+.search input#searchBar{
+    width: 95%;
+    height: 40px;
+    border-radius: 10px;
+    text-align: center;
+    display: inline-block;
+}
+.search img#searchIcon{
+    height: 40px;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+}
+.search hr{
+    width: 98%;
+    margin: 10px auto;
+    height: 3px;
+    background-color: black;
+}

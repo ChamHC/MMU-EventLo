@@ -39,6 +39,9 @@ header {
 .main-nav ul {
     display: flex;
 }
+.main-nav ul li a:hover {
+    color: white;
+}
 .profile-nav li{
     text-align: right;
     padding: 1em;
