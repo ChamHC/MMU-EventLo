@@ -13,25 +13,7 @@
     <title>Events</title>
 </head>
 <body>
-    <header>
-        <a href="index.html"><img src="images/logo.png" alt="MMU Event Organizer" class="logo"></a>
-        <nav class="main-nav">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="catalogue.html">E-Catalogue</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="faqs.html">FAQs</a></li>
-                <li><a href="aboutUs.html">About Us</a></li>
-            </ul>
-        </nav>
-        <img src="images/profile.png" alt="Profile" class="profile-icon" onclick="">
-        <nav class="profile-nav">
-            <ul>
-                <li><a href="profile.html">Profile</a></li>
-                <li><a href="login.html">Log Out</a></li>
-            </ul>
-        </nav>
-    </header>
+    <?php include 'header.php' ?>
     <div class="search">
         <input type="text" id="searchBar" placeholder="Search...">
         <img src="images/searchIcon.png" alt="Search" id="searchIcon" onclick="searchEvents()"><hr>
@@ -98,20 +80,6 @@
             </div>
         </div>
     </div>
-    <footer>
-        <h1>Connect With Us</h1>
-        <nav class="footer-nav">
-            <ul>
-                <li><a href="https://www.facebook.com/mmumalaysia/"><img src="images/social/facebook.png" alt="Facebook"></a></li>
-                <li><a href="https://www.instagram.com/mmumalaysia/"><img src="images/social/instagram.png" alt="Instagram"></a></li>
-                <li><a href="https://www.youtube.com/user/mmumalaysiatv"><img src="images/social/youtube.png" alt="Youtube"></a></li>
-                <li><a href="https://twitter.com/mmumalaysia"><img src="images/social/x.png" alt="X"></a></li>
-                <li><a href="https://www.tiktok.com/@mmumalaysia"><img src="images/social/tiktok.png" alt="TikTok"></a></li>
-                <li><a href="https://www.linkedin.com/school/mmumalaysia/"><img src="images/social/linkedin.png" alt="LinkedIn"></a></li>
-                <li><a href="https://www.flickr.com/photos/mmumalaysia"><img src="images/social/flickr.png" alt="Flickr"></a></li>
-            </ul>
-        </nav>
-        <p>© 2020 MULTIMEDIA UNIVERSITY. ALL RIGHTS RESERVED.</p>
-    </footer>
+    <?php include 'footer.php' ?>
 </body>
 </html>
