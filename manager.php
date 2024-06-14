@@ -1,4 +1,6 @@
 <?php
+    if (!isset($_GET['page'])) header('Location: manager.php?page=newsManager');
+
     function displayNews(){
         echo ("
             <div class='content-block'>
