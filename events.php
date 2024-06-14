@@ -1,7 +1,10 @@
 <?php
     require 'db_connect.php';
     $conn = OpenCon();
-    $sql = "SELECT * FROM event";
+
+    $userId = 3;
+
+    $sql = "SELECT * FROM event WHERE eventID IN (SELECT eventID FROM eventuser WHERE userID = $userId)";
     $result = $conn->query($sql);
 
     $events = array();
