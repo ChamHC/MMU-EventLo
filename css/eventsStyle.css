@@ -9,8 +9,11 @@
     align-items: center;
 }
 .event-container img {
-
     margin-right: 20px;
+    width: 400px;
+}
+.event-details {
+    width: 100%;
 }
 .event-details hr {
     border: 1px solid black;

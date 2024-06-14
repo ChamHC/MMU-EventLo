@@ -15,9 +15,10 @@
             $eventTime = $row['eventTime'];
             $eventLocation = $row['eventLocation'];
             $eventCapacity = $row['eventCapacity'];
-            $eventPicture = base64_encode($row['eventPicture']);
+            $eventPicture = 'data:image/jpeg;base64,'.base64_encode($row['eventPicture']);
             $eventDescription = $row['eventDescription'];
             $hostId = $row['userID'];
+            
 
             $sql2 = "SELECT * FROM user WHERE userID = $hostId LIMIT 1";
             $result2 = $conn->query($sql2);
@@ -48,7 +49,7 @@
         foreach ($events as $event) {
             echo('
                 <div class="event-container">
-                    <img src="images/logo.png" alt="Event Cover Image">
+                    <img src="'.$event['eventPicture'].'" alt="Event Cover Image">
                     <div class="event-details">
                         <h2>'.$event['eventName'].'</h2><hr>
                         <p id="hostedBy">Hosted by <span id="host"> '.$event['hostName'].'</span></p>
