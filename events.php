@@ -28,7 +28,7 @@
                 'eventId' => $eventId,
                 'eventName' => $eventName,
                 'eventFee' => $eventFee,
-                'eventDate' => $eventDate,
+                'eventDate' => $newsDateFormatted = date('j F Y', strtotime($eventDate)),
                 'eventTime' => $eventTime,
                 'eventLocation' => $eventLocation,
                 'eventCapacity' => $eventCapacity,
