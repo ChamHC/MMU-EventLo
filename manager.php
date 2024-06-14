@@ -15,8 +15,8 @@
                         Posted by PROF. DR WONG HIN YONG
                     </p>
                     <div class='button-container'>
-                        <img id='EditButton' src='images/edit.png' alt='Edit'>
-                        <img id='DeleteButton' src='images/delete.png' alt='Delete'>
+                        <img id='EditImgButton' src='images/edit.png' alt='Edit'>
+                        <img id='DeleteImgButton' src='images/delete.png' alt='Delete'>
                     </div>
                 </div>
                 </div>
@@ -139,10 +139,26 @@
                         <div class='content-bottom'>
                             <p id='PostedDate'>Posted on 10th June 2024</p>
                             <div class='button-container'>
-                                <img id='EditButton' src='images/edit.png' alt='Edit'>
-                                <img id='DeleteButton' src='images/delete.png' alt='Delete'>
+                                <img id='EditImgButton' src='images/edit.png' alt='Edit'>
+                                <img id='DeleteImgButton' src='images/delete.png' alt='Delete'>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        ");
+    }
+
+    function displayFAQ(){
+        echo("
+            <div class='content-block'>
+                <h2 id='Question'>What is MMU EventLo?</h2>
+                <p id='Answer'>MMU EventLo is a platform designed for MMU students to discover, participate in, and create events.</p>
+                <div class='content-bottom'>
+                    <p id='PostedBy'>Posted by Cham Hao Cheng</p>
+                    <div class='button-container'>
+                        <button id='EditButton'>Edit</button>
+                        <button id='RemoveButton'>Remove</button>
                     </div>
                 </div>
             </div>
@@ -232,7 +248,9 @@
                             displayAnnouncement();
                             break;
                         case 'faqManager':
-                            echo 'faqManager';
+                            displayFAQ();
+                            displayFAQ();
+                            displayFAQ();
                             break;
                         default:
                             echo 
