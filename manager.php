@@ -1,30 +1,67 @@
 <?php
     if (!isset($_GET['page'])) header('Location: manager.php?page=newsManager');
 
-    function displayNews(){
-        echo ("
-            <div class='content-block'>
-                <h2>eBwise is replacing MMLS</h2><hr>
-                <div class='content-main'>
-                <p id='Description'>
-                    Dear MMU Students, <br><br>
-                    We are excited to announce that MMU is transitioning from the existing Learning Management System (LMS), MMLS to a new
-                    Moodle-based LMS called eBwise. This transition marks a significant upgrade in our technological infrastructure to enhance your learning experience.
-                </p> 
-                <div class='content-bottom'>
-                    <p id='ContentDetails'>
-                        Date: 15th March 2024<br>
-                        Posted by PROF. DR WONG HIN YONG
-                    </p>
-                    <div class='button-container'>
-                        <img id='EditImgButton' src='images/edit.png' alt='Edit'>
-                        <img id='DeleteImgButton' src='images/delete.png' alt='Delete'>
+    require 'db_connect.php';
+    $conn = OpenCon();
+    $news_sql = "SELECT * FROM news";
+    $news_result = $conn->query($news_sql);
+
+    $news = array();
+
+    if ($news_result->num_rows > 0) {
+        while ($row = $news_result->fetch_assoc()) {
+            $newsId = $row['newsID'];
+            $newsName = $row['newsName'];
+            $newsDate = $row['newsDate'];
+            $newsDescription = $row['newsDescription'];
+            $adminId = $row['userID'];
+
+            $news_sql_2 = "SELECT * FROM user WHERE userID = $adminId LIMIT 1";
+            $news_result_2 = $conn->query($news_sql_2);
+            $row_2 = $news_result_2->fetch_assoc();
+            $adminName = $row_2['username'];
+
+            
+
+            $new = array(
+                'newsId' => $newsId,
+                'newsName' => $newsName,
+                'newsDate' => $newsDateFormatted = date('j F Y', strtotime($newsDate)),
+                'newsDescription' => $newsDescription,
+                'adminId' => $adminId,
+                'adminName' => $adminName
+            );
+
+            $news[] = $new;
+        }
+    }
+
+    CloseCon($conn);
+
+    function displayNews($news){
+        foreach ($news as $new){
+            echo ("
+                <div class='content-block'>
+                    <h2>".$new['newsName']."</h2><hr>
+                    <div class='content-main'>
+                    <p id='Description'>
+                        ".$new['newsDescription']."
+                    </p> 
+                    <div class='content-bottom'>
+                        <p id='ContentDetails'>
+                            Date: ".$new['newsDate']."<br>
+                            Posted by ".$new['adminName']."
+                        </p>
+                        <div class='button-container'>
+                            <img id='EditImgButton' src='images/edit.png' alt='Edit'>
+                            <img id='DeleteImgButton' src='images/delete.png' alt='Delete'>
+                        </div>
+                    </div>
                     </div>
                 </div>
-                </div>
-            </div>
-            <img id='Add' src='images/add.png' alt='Add'>
-        ");
+                <img id='Add' src='images/add.png' alt='Add'>
+            ");
+        }
     }
 
     function displayRole(){
@@ -207,7 +244,7 @@
                     window.location.href = "manager.php?page=faqManager";
                 }
 
-                var page = window.location.href.split('=')[1]; // Get the page parameter from the URL
+                var page = window.location.href.split('=')[1];
                 switch (page) {
                     case 'newsManager':
                         var button = document.getElementById("NewsButton");
@@ -238,7 +275,7 @@
                 if(isset($_GET['page'])){
                     switch ($_GET['page']) {
                         case 'newsManager':
-                            displayNews();
+                            displayNews($news);
                             break;
                         case 'roleManager':
                             displayRole();
