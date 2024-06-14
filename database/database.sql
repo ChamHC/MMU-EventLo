@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 13, 2024 at 08:09 PM
+-- Generation Time: Jun 14, 2024 at 08:07 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -150,21 +150,22 @@ CREATE TABLE `user` (
   `email` text NOT NULL,
   `contactNum` varchar(20) NOT NULL,
   `country` text NOT NULL,
-  `role` text NOT NULL
+  `role` text NOT NULL,
+  `applyHost` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`userID`, `username`, `password`, `gender`, `dateOfBirth`, `email`, `contactNum`, `country`, `role`) VALUES
-(1, 'admin123', 'admin456', 'boy', '2002-11-14', 'admin123@gmail.com', '0183573883', 'MALAYSIA', 'Admin'),
-(2, 'ali', '12345', 'boy', '2002-03-18', 'ali@gmail.com', '0198927783', 'MALAYSIA', 'User'),
-(4, 'meimei', 'mei12345', 'girl', '2002-10-30', 'mei@gmail.com', '0129024797', 'MALAYSIA', 'User'),
-(5, 'muthu', 'muthu123', 'boy', '2001-05-23', 'muthu@gmail.com', '0129372467', 'MALAYSIA', 'User'),
-(6, 'MMU Book Club', 'bookclub1406', 'boy', '1995-02-03', 'mmubookclub@gmail.com', '0129301236', 'MALAYSIA', 'Host'),
-(7, 'MMU Game Development Club', 'gamedev0501', 'boy', '1994-06-10', 'mmu_gamedev@yahoo.com', '0129647391', 'MALAYSIA', 'Host'),
-(8, 'Chinese Language Society Multimedia University (Cyberjaya) Stage Show', 'stageshowclsc1406', 'girl', '2004-06-14', 'stageshowclsc1406@gmail.com', '0192083928', 'MALAYSIA', 'Host');
+INSERT INTO `user` (`userID`, `username`, `password`, `gender`, `dateOfBirth`, `email`, `contactNum`, `country`, `role`, `applyHost`) VALUES
+(1, 'admin123', 'admin456', 'boy', '2002-11-14', 'admin123@gmail.com', '0183573883', 'MALAYSIA', 'Admin', 0),
+(2, 'ali', '12345', 'boy', '2002-03-18', 'ali@gmail.com', '0198927783', 'MALAYSIA', 'User', 0),
+(4, 'meimei', 'mei12345', 'girl', '2002-10-30', 'mei@gmail.com', '0129024797', 'MALAYSIA', 'User', 0),
+(5, 'muthu', 'muthu123', 'boy', '2001-05-23', 'muthu@gmail.com', '0129372467', 'MALAYSIA', 'User', 0),
+(6, 'MMU Book Club', 'bookclub1406', 'boy', '1995-02-03', 'mmubookclub@gmail.com', '0129301236', 'MALAYSIA', 'Host', 0),
+(7, 'MMU Game Development Club', 'gamedev0501', 'boy', '1994-06-10', 'mmu_gamedev@yahoo.com', '0129647391', 'MALAYSIA', 'Host', 0),
+(8, 'Chinese Language Society Multimedia University (Cyberjaya) Stage Show', 'stageshowclsc1406', 'girl', '2004-06-14', 'stageshowclsc1406@gmail.com', '0192083928', 'MALAYSIA', 'Host', 0);
 
 --
 -- Indexes for dumped tables
