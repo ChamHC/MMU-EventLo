@@ -43,6 +43,8 @@ h2 {
     border-radius: 5px;
     margin-bottom: 20px;
 }
+
+/* News Manager */
 .content-main {
     display: flex;
     flex-direction: column;
@@ -72,4 +74,46 @@ h2 {
 #ContentDetails {
     font-size: 12px;
     font-weight: bold;
+}
+
+/* Role Manager */
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td{
+    padding: 10px;
+    text-align: center;
+}
+th{
+    background-color: #ff914d;
+    color: white;
+}
+tr:nth-child(odd){
+    background-color: #f2f2f2;
+}
+#ApproveButton, #RejectButton{
+    padding: 5px 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    width: 100px;
+}
+#ApproveButton{
+    background-color: green;
+    margin-right: 5px;
+}
+#RejectButton{
+    background-color: red;
+    margin-left: 5px;
+}
+#ApproveButton:hover{
+    background-color: lightgreen;
+    color: black;
+}
+#RejectButton:hover{
+    background-color: lightcoral;
+    color: black;
 }
