@@ -1,3 +1,73 @@
+<?php
+    require 'db_connect.php';
+    $conn = OpenCon();
+    $sql = "SELECT * FROM event";
+    $result = $conn->query($sql);
+
+    $events = array();
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $eventId = $row['eventID'];
+            $eventName = $row['eventName'];
+            $eventFee = $row['eventFee'];
+            $eventDate = $row['eventDate'];
+            $eventTime = $row['eventTime'];
+            $eventLocation = $row['eventLocation'];
+            $eventCapacity = $row['eventCapacity'];
+            $eventPicture = base64_encode($row['eventPicture']);
+            $eventDescription = $row['eventDescription'];
+            $hostId = $row['userID'];
+
+            $sql2 = "SELECT * FROM user WHERE userID = $hostId LIMIT 1";
+            $result2 = $conn->query($sql2);
+            $row2 = $result2->fetch_assoc();
+            $hostName = $row2['username'];
+
+            $event = array(
+                'eventId' => $eventId,
+                'eventName' => $eventName,
+                'eventFee' => $eventFee,
+                'eventDate' => $eventDate,
+                'eventTime' => $eventTime,
+                'eventLocation' => $eventLocation,
+                'eventCapacity' => $eventCapacity,
+                'eventPicture' => $eventPicture,
+                'eventDescription' => $eventDescription,
+                'hostId' => $hostId,
+                'hostName' => $hostName
+            );
+
+            $events[] = $event;
+        }
+    }
+
+    CloseCon($conn);
+
+    function DisplayEvents($events){
+        foreach ($events as $event) {
+            echo('
+                <div class="event-container">
+                    <img src="images/logo.png" alt="Event Cover Image">
+                    <div class="event-details">
+                        <h2>'.$event['eventName'].'</h2><hr>
+                        <p id="hostedBy">Hosted by <span id="host"> '.$event['hostName'].'</span></p>
+                        <p>Date and Time: <span id="dateAndTime">'.$event['eventDate'].', '.$event['eventTime'].'</span></p>
+                        <p>Venue: <span id="venue">'.$event['eventLocation'].'</span></p>
+                        <p>Fee: <span id="fee">RM'.$event['eventFee'].'</span></p>
+                        <p>Capacity: <span id="capacity">'.$event['eventCapacity'].'</span></p>
+                        <p>Description: <br><span id="description">
+                        '.$event['eventDescription'].'
+                        </span></p>
+                        <button id="leaveButton">Leave</button>
+                        <button id="announcementButton">Announcement</button>
+                    </div>
+                </div>
+            ');
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,66 +89,9 @@
         <img src="images/searchIcon.png" alt="Search" id="searchIcon" onclick="searchEvents()"><hr>
     </div>
     <div class="main">
-        <div class="event-container">
-            <img src="images/logo.png" alt="Event Cover Image">
-            <div class="event-details">
-                <h2>Event Name</h2><hr>
-                <p id="hostedBy">Hosted by <span id="host"> Write the name of host here</span></p>
-                <p>Date and Time: <span id="dateAndTime">Write date and time of event here</span></p>
-                <p>Venue: <span id="venue">Write the venue of event here</span></p>
-                <p>Fee: <span id="fee">Write fee to participate here</span></p>
-                <p>Capacity: <span id="capacity">Write participant capacity here</span></p>
-                <p>Description: <br><span id="description">
-                    write description here write description here write description here write description here
-                    write description here write description here write description here write description here
-                    write description here write description here write description here write description here
-                    write description here write description here write description here write description here
-                    write description here write description here write description here write description here
-                </span></p>
-                <button id="leaveButton" onclick="">Leave</button>
-                <button id="announcementButton" onclick="">Announcement</button>
-            </div>
-        </div>
-        <div class="event-container">
-            <img src="images/logo.png" alt="Event Cover Image">
-            <div class="event-details">
-                <h2>Event Name</h2><hr>
-                <p id="hostedBy">Hosted by <span id="host"> Write the name of host here</span></p>
-                <p>Date and Time: <span id="dateAndTime">Write date and time of event here</span></p>
-                <p>Venue: <span id="venue">Write the venue of event here</span></p>
-                <p>Fee: <span id="fee">Write fee to participate here</span></p>
-                <p>Capacity: <span id="capacity">Write participant capacity here</span></p>
-                <p>Description: <br><span id="description">
-                    write description here write description here write description here write description here
-                    write description here write description here write description here write description here
-                    write description here write description here write description here write description here
-                    write description here write description here write description here write description here
-                    write description here write description here write description here write description here
-                </span></p>
-                <button id="leaveButton" onclick="">Leave</button>
-                <button id="announcementButton" onclick="">Announcement</button>
-            </div>
-        </div>
-        <div class="event-container">
-            <img src="images/logo.png" alt="Event Cover Image">
-            <div class="event-details">
-                <h2>Event Name</h2><hr>
-                <p id="hostedBy">Hosted by <span id="host"> Write the name of host here</span></p>
-                <p>Date and Time: <span id="dateAndTime">Write date and time of event here</span></p>
-                <p>Venue: <span id="venue">Write the venue of event here</span></p>
-                <p>Fee: <span id="fee">Write fee to participate here</span></p>
-                <p>Capacity: <span id="capacity">Write participant capacity here</span></p>
-                <p>Description: <br><span id="description">
-                    write description here write description here write description here write description here
-                    write description here write description here write description here write description here
-                    write description here write description here write description here write description here
-                    write description here write description here write description here write description here
-                    write description here write description here write description here write description here
-                </span></p>
-                <button id="leaveButton" onclick="">Leave</button>
-                <button id="announcementButton" onclick="">Announcement</button>
-            </div>
-        </div>
+        <?php
+            DisplayEvents($events);
+        ?>
     </div>
     <?php include 'footer.php' ?>
 </body>
