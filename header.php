@@ -7,7 +7,7 @@
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="catalogue.html">E-Catalogue</a></li>
-                <li><a href="events.html">Events</a></li>
+                <li><a href="events.php">Events</a></li>
                 <li><a href="faqs.html">FAQs</a></li>
                 <li><a href="aboutUs.html">About Us</a></li>
             </ul>
