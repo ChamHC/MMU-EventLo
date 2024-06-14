@@ -21,6 +21,7 @@
                 </div>
                 </div>
             </div>
+            <img id='Add' src='images/add.png' alt='Add'>
         ");
     }
 
@@ -59,6 +60,94 @@
             </div>
         ");
     }
+
+    function displayEvent(){
+        echo ("
+            <div class='content-block'>
+                <table>
+                    <tr>
+                        <th>Event</th>
+                        <th>Host</th>
+                        <th>Venue</th>
+                        <th>Date and Time</th>
+                        <th>Fee</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr>
+                        <td>MMU Book Exchange</td>
+                        <td>MMU Book Club</td>
+                        <td>MMU Library</td>
+                        <td>26th April 2024</td>
+                        <td>Free</td>
+                        <td>
+                            <button id='ManageButton'>Manage</button>
+                            <button id='RemoveButton'>Remove</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Larian Studio Visit</td>
+                        <td>MMU Game Development Club</td>
+                        <td>Larian Studio</td>
+                        <td>1st May 2024, 10.00am - 4.00pm</td>
+                        <td>RM20</td>
+                        <td>
+                            <button id='ManageButton'>Manage</button>
+                            <button id='RemoveButton'>Remove</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <script>
+                document.getElementById('ManageButton').onclick = function(){
+                    window.location.href = 'manager.php?page=announcementManager';
+                }
+            </script>
+        ");
+    }
+
+    function displayAnnouncement(){
+        echo("
+            <div class='content-block'>
+                <div class='event-container' style='border: none'>
+                    <img src='images/logo.png' alt='Event Cover Image'>
+                    <div class='event-details'>
+                        <h2>心战 Suffocate</h2><hr>
+                        <p id='hostedBy'>Hosted by <span id='host'> Chinese Language Society Multimedia Unversity(Cyberjaya)Stage Show</span></p>
+                        <p>Date and Time: <span id='dateAndTime'>14th June 2024 8pm-10pm</span></p>
+                        <p>Venue: <span id='venue'>Dewan Tun Canselor</span></p>
+                        <p>Fee: <span id='fee'>Free</span></p>
+                        <p>Capacity: <span id='capacity'>500</span></p>
+                        <p>Description: <br><span id='description'>
+                        复杂的人物关系，让人摸不着的头绪，猜不透的下一幕，生活中的酸甜苦辣，处处围绕在你我身边的社会问题 ，
+                        充满惊喜的铺垫和意想不到的结局。人的内心总会被一种名为“情感”的力量操控🫴🏽，在心与心之间的战斗中，
+                        人需要谨慎地在十字路口做出关键选择🔑，从而确保自己踏上那条正确的道路🛤️.<br><br>
+                        主角究竟经历了什么事情？真相又究竟是如何？这就得靠你们来亲自感受我们的舞台剧啦！<br><br>
+                        Complex interpersonal relationships, perplexing plots that keep everyone guessing about the next scene, 
+                        the ups and downs of life, and societal issues surrounding us - all filled with surprises leading to 
+                        unexpected endings.The human inner self is often influenced by a force called “emotion.”🫴🏽 
+                        In the inner conflict of the heart and mind, others need to carefully make the final choices 🔑 
+                        at crossroads, determining the direction they take forward🛤️.<br><br> 
+                        What has the protagonist experienced? What is the truth behind it all? You’ll have to experience our 
+                        Stage Show firsthand to find out!
+                        </span></p>
+                    </div>
+                </div>
+                <div class='announcements-container'>
+                    <h2>Announcements</h2>
+                    <div class='announcement'>
+                        <p id='Details'>The event will be held in Dewan Tun Canselor, MMU Cyberjaya. Please be punctual.</p>
+                        <div class='content-bottom'>
+                            <p id='PostedDate'>Posted on 10th June 2024</p>
+                            <div class='button-container'>
+                                <img id='EditButton' src='images/edit.png' alt='Edit'>
+                                <img id='DeleteButton' src='images/delete.png' alt='Delete'>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        ");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -70,6 +159,7 @@
     <link rel="stylesheet" href="css/headerStyle.css">
     <link rel="stylesheet" href="css/searchStyle.css">
     <link rel="stylesheet" href="css/footerStyle.css">
+    <link rel="stylesheet" href="css/eventsStyle.css">
     <link rel="stylesheet" href="css/managerStyle.css">
     <title>Manager</title>
 </head>
@@ -98,6 +188,30 @@
                 document.getElementById("FAQButton").onclick = function(){
                     window.location.href = "manager.php?page=faqManager";
                 }
+
+                var page = window.location.href.split('=')[1]; // Get the page parameter from the URL
+                switch (page) {
+                    case 'newsManager':
+                        var button = document.getElementById("NewsButton");
+                        break;
+                    case 'roleManager':
+                        var button = document.getElementById("RoleButton");
+                        break;
+                    case 'eventManager':
+                    case 'announcementManager':
+                        var button = document.getElementById("EventButton");
+                        break;
+                    case 'faqManager':
+                        var button = document.getElementById("FAQButton");
+                        break;
+                    default:
+                        break;
+                }
+                if (button) {
+                    button.style.backgroundColor = "#ff6a00";
+                    button.style.color = "#ffffff";
+                    button.style.border = "none";
+                }
             </script>
         </div>
         </div>
@@ -112,7 +226,10 @@
                             displayRole();
                             break;
                         case 'eventManager':
-                            echo 'eventManager';
+                            displayEvent();
+                            break;
+                        case 'announcementManager':
+                            displayAnnouncement();
                             break;
                         case 'faqManager':
                             echo 'faqManager';
@@ -127,7 +244,6 @@
                     }
                 }
             ?>
-            <img id="Add" src="images/add.png" alt="Add">
         </div>
     </div>
     <?php include 'footer.php' ?>

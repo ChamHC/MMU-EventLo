@@ -117,3 +117,73 @@ tr:nth-child(odd){
     background-color: lightcoral;
     color: black;
 }
+
+/* Event Manager */
+#ManageButton{
+    padding: 5px 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    width: 100px;
+    background-color: #ff6a00;
+}
+#ManageButton:hover{
+    background-color: #ff914d;
+    color: black;
+}
+#RemoveButton{
+    padding: 5px 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    width: 100px;
+    background-color: red;
+}
+#RemoveButton:hover{
+    background-color: lightcoral;
+    color: black;
+}
+
+/* Announcement Manager */
+.announcements-container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.announcements-container h2{
+    background-color: #ff6a00;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    color: #ffffff;
+}
+.announcement{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+.announcement p{
+    padding: 10px 0;
+}
+.button-container{
+    padding: 10px 0;
+    display: flex;
+}
+#EditButton, #DeleteButton{
+    margin-left: 10px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+#Details {
+    font-weight: normal;
+}
+#PostedDate{
+    font-size: 12px;
+}
