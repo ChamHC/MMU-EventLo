@@ -5,87 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/resetStyle.css">
     <link rel="stylesheet" href="css/headerStyle.css">
-    <link rel="stylesheet" href="css/footerStyle.css">
     <link rel="stylesheet" href="css/searchStyle.css">
+    <link rel="stylesheet" href="css/footerStyle.css">
     <link rel="stylesheet" href="css/managerStyle.css">
     <title>Manager</title>
-    <style>
-        h2 {
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        .main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        .buttons {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-            width: 99%;
-        }
-        .buttons button {
-            margin: 0 10px;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            background-color: #ff914d;
-            cursor: pointer;
-            font-weight: bold;
-            width: 25%;
-            border: solid 2px black;
-        }
-        .buttons button:hover {
-            background-color: #ff6a00;
-            color: white;
-        }
-        .content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .content-block {
-            width: 98%;
-            padding: 20px;
-            border: 1px solid #000000;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-        .content-main {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            margin: 0 20px;
-        }
-        .content-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
-        #EditButton, #DeleteButton {
-            width: 50px;
-            height: 50px;
-            cursor: pointer;
-        }
-        #Add {
-            width: 50px;
-            height: 50px;
-            margin: 0 0 20px 0;
-            cursor: pointer;
-        }
-        #Description {
-            margin: 20px 0;
-        }
-        #ContentDetails {
-            font-size: 12px;
-            font-weight: bold;
-        }
-    </style>
 </head>
 <body>
     <?php include 'header.php' ?>
