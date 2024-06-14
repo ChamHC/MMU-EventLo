@@ -35,6 +35,29 @@
         }
     }
 
+    if ($_GET['page'] == 'roleManager'){
+        $role_sql = "SELECT * FROM user WHERE role = 'User' AND applyHost = 1";
+        $role_result = $conn->query($role_sql);
+        $roles = array();
+        if ($role_result->num_rows > 0) {
+            while ($row = $role_result->fetch_assoc()) {
+                $username = $row['username'];
+                $userId = $row['userID'];
+                $contactNum = $row['contactNum'];
+                $email = $row['email'];
+
+                $role = array(
+                    'username' => $username,
+                    'userId' => $userId,
+                    'contactNum' => $contactNum,
+                    'email' => $email,
+                );
+
+                $roles[] = $role;
+            }
+        }
+    }
+
     if ($_GET['page'] == 'eventManager'){
         $event_sql = "SELECT * FROM event";
         $event_result = $conn->query($event_sql);
@@ -132,6 +155,37 @@
         }
     }
 
+    if ($_GET['page'] == 'faqManager'){
+        $faq_sql = "SELECT * FROM faq";
+        $faq_result = $conn->query($faq_sql);
+        $faqs = array();
+        if ($faq_result->num_rows > 0) {
+            while ($row = $faq_result->fetch_assoc()) {
+                $faqId = $row['faqID'];
+                $faqQuestion = $row['question'];
+                $faqAnswer = $row['answer'];
+                $faqSeverity = $row['severityQuestion'];
+                $userId = $row['userID'];
+
+                $faq_sql_2 = "SELECT * FROM user WHERE userID = $userId LIMIT 1";
+                $faq_result_2 = $conn->query($faq_sql_2);
+                $row_2 = $faq_result_2->fetch_assoc();
+                $username = $row_2['username'];
+
+                $faq = array(
+                    'faqId' => $faqId,
+                    'faqQuestion' => $faqQuestion,
+                    'faqAnswer' => $faqAnswer,
+                    'faqSeverity' => $faqSeverity,
+                    'userId' => $userId,
+                    'username' => $username
+                );
+
+                $faqs[] = $faq;
+            }
+        }
+    }
+
     CloseCon($conn);
 
     function displayNews($news){
@@ -160,37 +214,33 @@
         }
     }
 
-    function displayRole(){
+    function displayRole($roles){
         echo ("
             <div class='content-block'>
                 <table>
                     <tr>
                         <th>Name</th>
-                        <th>Student ID</th>
+                        <th>User ID</th>
                         <th>Contact Number</th>
                         <th>Email</th>
                         <th>Actions</th>
                     </tr>
-                    <tr>
-                        <td>Cham Hao Cheng</td>
-                        <td>1211304951</td>
-                        <td>0123456789</td>
-                        <td>1211304951@student.mmu.edu.my</td>
-                        <td>
-                            <button id='ApproveButton'>Approve</button>
-                            <button id='RejectButton'>Reject</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Cham Hao Cheng</td>
-                        <td>1211304951</td>
-                        <td>0123456789</td>
-                        <td>1211304951@student.mmu.edu.my</td>
-                        <td>
-                            <button id='ApproveButton'>Approve</button>
-                            <button id='RejectButton'>Reject</button>
-                        </td>
-                    </tr>
+        ");
+        foreach($roles as $role){
+            echo ("
+                <tr>
+                    <td>$role[username]</td>
+                    <td>$role[userId]</td>
+                    <td>$role[contactNum]</td>
+                    <td>$role[email]</td>
+                    <td>
+                        <button id='ApproveButton'>Approve</button>
+                        <button id='RejectButton'>Reject</button>
+                    </td>
+                </tr>
+            ");
+        }
+        echo ("
                 </table>
             </div>
         ");
@@ -271,20 +321,22 @@
         ");
     }
 
-    function displayFAQ(){
-        echo("
-            <div class='content-block'>
-                <h2 id='Question'>What is MMU EventLo?</h2>
-                <p id='Answer'>MMU EventLo is a platform designed for MMU students to discover, participate in, and create events.</p>
-                <div class='content-bottom'>
-                    <p id='PostedBy'>Posted by Cham Hao Cheng</p>
-                    <div class='button-container'>
-                        <button id='EditButton'>Edit</button>
-                        <button id='RemoveButton'>Remove</button>
+    function displayFAQ($faqs){
+        foreach ($faqs as $faq){
+            echo("
+                <div class='content-block'>
+                    <h2 id='Question'>$faq[faqQuestion]</h2>
+                    <p id='Answer'>$faq[faqAnswer]</p>
+                    <div class='content-bottom'>
+                        <p id='PostedBy'>$faq[faqSeverity] Severity | Posted by $faq[username] </p>
+                        <div class='button-container'>
+                            <button id='EditButton'>Edit</button>
+                            <button id='RemoveButton'>Remove</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        ");
+            ");
+        }
     }
 ?>
 
@@ -360,13 +412,13 @@
                         displayNews($news);
                     }
                     else if ($_GET['page'] == 'roleManager'){
-                        displayRole();
+                        displayRole($roles);
                     }
                     else if ($_GET['page'] == 'eventManager'){
                         displayEvent($events);
                     }
                     else if ($_GET['page'] == 'faqManager'){
-                        displayFAQ();
+                        displayFAQ($faqs);
                     }
                     else if ($_GET['page'] == 'announcementManager'){
                         displayAnnouncement($event, $announcements);
