@@ -1,0 +1,43 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+.main {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+}
+
+.title {
+    text-align: center;
+    color: orange;
+    margin: 20px 0;
+    font-size: 36px;
+}
+
+.faq-container {
+    margin-top: 20px;
+}
+
+.faq-item {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 15px;
+}
+
+.question {
+    color: #333;
+    font-size: 20px;
+    margin: 0;
+}
+
+.answer {
+    color: #666;
+    margin-top: 10px;
+    font-size: 16px;
+}
