@@ -1,25 +1,27 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    }
-    
-    .main-content {
+}
+
+.main-content {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     padding: 20px;
     justify-content: center;
-    }
-    
-    .catalogue-pair {
+}
+
+.catalogue-pair {
     display: flex;
     width: 100%;
     justify-content: space-between;
     margin-bottom: 20px;
-    }
-    
-    .left-catalogue-container, .right-catalogue-container {
-    flex: 0 0 48%; /* Adjust the width as needed */
+}
+
+.left-catalogue-container,
+.right-catalogue-container {
+    flex: 0 0 48%;
+    /* Adjust the width as needed */
     padding: 20px;
     border: 2px dotted black;
     border-radius: 10px;
@@ -28,48 +30,49 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    }
-    
-    .event-item {
+}
+
+.event-item {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-    }
-    
-    .event-item img {
+}
+
+.event-item img {
     width: 250px;
     height: auto;
     display: block;
     margin: 0 auto 10px auto;
-    }
-    
-    .event-details {
+}
+
+.event-details {
     width: 100%;
-    text-align: right; /* Align button to the right */
-    }
-    
-    .event-details hr {
+    text-align: right;
+    /* Align button to the right */
+}
+
+.event-details hr {
     border: 1px solid black;
     margin: 10px 0;
-    }
-    
-    .event-details h2 {
+}
+
+.event-details h2 {
     text-align: center;
-    }
-    
-    .event-details p#hostedBy {
+}
+
+.event-details p#hostedBy {
     text-align: right;
     font-size: 12px;
     margin-bottom: 10px;
     font-weight: normal;
-    }
-    
-    .event-details span#host {
+}
+
+.event-details span#host {
     font-weight: bold;
-    }
-    
-    .event-details button {
+}
+
+.event-details button {
     background-color: #ff914d;
     color: black;
     border: 3px solid black;
@@ -80,11 +83,21 @@ body {
     font-weight: bold;
     width: 200px;
     box-sizing: border-box;
-    align-self: flex-end; /* Aligns the button to the right */
-    }
-    
-    .event-details button
-    {
+    align-self: flex-end;
+    /* Aligns the button to the right */
+}
+
+.event-details button {
     color: white;
     background-color: black;
-    }
+}
+
+.no-events-message {
+    background-color: #f8d7da;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 20px;
+    color: #721c24;
+    margin-top: 10px;
+
+}

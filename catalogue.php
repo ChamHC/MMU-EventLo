@@ -3,7 +3,7 @@
 require 'db_connect.php';
 $conn = OpenCon();
 
-$userId = 3;
+$userId = 9;
 
 // Get the current date
 $currentDate = date('Y-m-d');
@@ -82,6 +82,11 @@ function DisplayEvents($events, $userId){
         $count++;
     }
     echo('</div>');
+    echo('</br>');
+
+    if (empty($events)) {
+        echo '<p class="no-events-message">No upcoming events that you have not joined.</p>';
+    }
 }
 ?>
 

@@ -5,20 +5,24 @@ $conn = OpenCon();
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['joinEvent'])) {
-    if (!isset($_POST['userId']) || !isset($_POST['eventId'])) {
-        die("User ID or Event ID is missing");
-    }
-    
-    $userId = $_POST['userId'];
-    $eventId = $_POST['eventId'];
+   // Retrieve the eventID from the URL
+if (!isset($_GET['eventId']) || !isset($_GET['userId'])) {
+    die("Event ID or User ID is missing");
+}
+$eventId = $_GET['eventId'];
+$userId = $_GET['userId'];
+
 
     // Insert into eventuser table
     $sql = "INSERT INTO eventuser (userID, eventID) VALUES ($userId, $eventId)";
+
     if ($conn->query($sql) === TRUE) {
         $message = "Successfully joined the event.";
+        header("Location: events.php?userId=" . $userId);
     } else {
         $message = "Error: " . $conn->error;
     }
+    
 }
 
 // Retrieve the eventID from the URL

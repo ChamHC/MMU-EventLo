@@ -6,7 +6,7 @@
         <nav class="main-nav">
             <ul>
                 <li><a href="index.html" id="Home">Home</a></li>
-                <li><a href="catalogue.html" id="ECatalogue">E-Catalogue</a></li>
+                <li><a href="catalogue.php" id="ECatalogue">E-Catalogue</a></li>
                 <li><a href="events.php" id="Events">Events</a></li>
                 <li><a href="faqs.html" id="FAQs">FAQs</a></li>
                 <li><a href="aboutUs.html" id="AboutUs">About Us</a></li>
