@@ -1,0 +1,187 @@
+.event-container {
+    border: 2px dotted black;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    display: flex;
+    align-items: center; 
+    flex-wrap: wrap; 
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    max-width: 100%; /* Ensure container doesn't exceed the parent width */
+}
+
+.event-container img {
+    margin-right: 20px;
+}
+
+.event-details {
+    flex: 1; 
+    min-width: 0; /* Prevent overflow */
+    word-wrap: break-word; /* Break long words */
+}
+
+.event-details hr {
+    border: 1px solid black;
+    margin: 10px 0;
+}
+
+.event-details p#hostedBy,
+.content-bottom p#datePost {
+    text-align: right;
+    font-size: 12px;
+    margin-bottom: 10px;
+    font-weight: normal;
+}
+
+.event-details span#host,
+.content-bottom span#date {
+    font-weight: bold;
+}
+
+.event-details p {
+    margin: 10px 0;
+    line-height: 30px;
+    font-weight: normal;
+}
+
+.event-details button {
+    background-color: #ff914d;
+    color: black;
+    border: 3px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 10px;
+    cursor: pointer;
+    float: right;
+    font-weight: bold;
+    width: 200px;
+}
+
+.content-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+#EditImgButton, #DeleteImgButton {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.add-button-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%; /* or specific width if needed */
+    margin: 0 auto; /* center the container if needed */
+}
+
+#Add {
+    width: 50px;
+    height: 50px;
+    margin: 10px 20px 0 0; /* Adjust margin as needed */
+    cursor: pointer;
+}
+
+.announcement-panel {
+    display: none; /* Ensure the panel is hidden by default */
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 20px;
+    box-sizing: border-box; 
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.announcement-panel-inner {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 5px;
+    position: relative; /* Make inner container position relative to correctly place close button */
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+}
+
+/* Add styles for form labels and inputs */
+#announcementUploadForm {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+}
+
+#announcementUploadForm label {
+    width: 100%;
+    max-width: 100px; /* Set the desired width for the labels */
+    text-align: left;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+#announcementUploadForm textarea,
+#announcementUploadForm input[type="file"] {
+    width: calc(100% - 110px); /* Subtract label width and margin */
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Position upload button at the bottom right */
+#announcementUploadForm .button-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+#announcementUploadForm button {
+    background-color: #ff914d;
+    color: black;
+    border: 3px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#announcementUploadForm button:hover {
+    color: white;
+    background-color: green;
+}
+
+/* Ensure file input is accessible */
+#announcementUploadForm input[type="file"] {
+    display: block;
+    width: calc(100% - 20px); /* Adjust width if necessary */
+    margin-bottom: 20px;
+    cursor: pointer;
+}
