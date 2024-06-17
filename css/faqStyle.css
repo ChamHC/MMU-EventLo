@@ -7,8 +7,9 @@ body {
 
 .main {
     width: 80%;
-    margin: auto;
+    margin: 80px auto 20px; /* Adjust top and bottom margin to ensure content moves down */
     padding: 20px;
+    box-sizing: border-box; /* Prevent padding from affecting width */
 }
 
 .title {
@@ -32,12 +33,37 @@ body {
 
 .question {
     color: #333;
-    font-size: 20px;
+    font-size: 19px;
     margin: 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .answer {
     color: #666;
     margin-top: 10px;
-    font-size: 16px;
+    font-size: 15px;
+    display: none; /* Initially hide the answer */
+}
+
+.toggle-icon {
+    margin-left: 10px; /* Adjust icon position */
+    font-weight: bold;
+}
+
+.faq-icon-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000; /* Ensure the icon is on top of everything */
+}
+
+.faq-icon-container img {
+    width: 50px; /* Adjust icon width */
+    height: 50px; /* Adjust icon height */
+    cursor: pointer; /* Cursor style on hover */
+    border-radius: 50%; /* Circular border */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add shadow effect */
 }

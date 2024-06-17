@@ -1,0 +1,99 @@
+/* Reset default styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Main container styling */
+.main {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form title styling */
+.form-title {
+    color: #ff9900; /* Orange color */
+    text-align: center;
+}
+
+/* Form paragraph styling */
+.main p {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Form group styling */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Label styling */
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Input and select styling */
+input[type=text], input[type=email], textarea, select {
+    width: calc(100% - 20px); /* Adjust width to account for padding */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+/* Textarea specific styling */
+textarea {
+    resize: none; /* Prevent resizing */
+    width: 100%; /* Ensure textarea takes full width */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+    min-height: 100px; /* Adjust minimum height as needed */
+}
+
+
+/* Submit button styling */
+.submit-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #ff9900; /* Orange color */
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px; /* Add margin to separate from other elements */
+}
+
+.submit-button:hover {
+    background-color: #e68a00; /* Darker shade of orange on hover */
+}
+
+/* Ensure main content area respects header and footer */
+body {
+    padding-top: 60px; /* Adjust according to your header height */
+    padding-bottom: 40px; /* Adjust according to your footer height */
+}
+
+/* Sticky footer positioning */
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
