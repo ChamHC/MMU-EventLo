@@ -1,0 +1,56 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.about-container {
+    width: 80%;
+    margin: auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+h1 {
+    text-align: left;
+    margin-top: 20px;
+    margin-left: 25px;
+    font-size: 3.5em;
+}
+
+p {
+    line-height: 1.6;
+    text-align: justify;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-bottom: 20px;
+}
+
+.team {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.member {
+    background: #e7e7e7;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    border-radius: 5px;
+    width: 22%;
+}
+
+.member img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.member p {
+    margin: 10px 0 0 0;
+}

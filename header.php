@@ -9,7 +9,7 @@
                 <li><a href="catalogue.php" id="ECatalogue">E-Catalogue</a></li>
                 <li><a href="events.php" id="Events">My Events</a></li>
                 <li><a href="faq.php" id="FAQs">FAQs</a></li>
-                <li><a href="" id="AboutUs">About Us</a></li>
+                <li><a href="aboutUs.php" id="AboutUs">About Us</a></li>
             </ul>
         </nav>
         <img src="images/profile.png" alt="Profile" class="profile-icon" onclick="">
@@ -17,7 +17,7 @@
             <ul>
                 <li><a href="profile.php">Profile</a></li>
                 <li><a href="manager.php">Manager</a></li>
-                <li><a href="">Log Out</a></li>
+                <li><a href="logout.php">Log Out</a></li>
             </ul>
         </nav>
         </header>
