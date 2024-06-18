@@ -63,7 +63,7 @@ h2 {
     height: 50px;
     cursor: pointer;
 }
-#Add {
+#AddNewsImgButton {
     width: 50px;
     height: 50px;
     margin: 0 0 20px 0;
@@ -217,4 +217,101 @@ tr:nth-child(odd){
 #EditButton:hover{
     background-color: #ff914d;
     color: black;
+}
+
+/* Edit News */
+.edit-news {
+    display: none;
+}
+.edit-news #newsTitle {
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: lightgray;
+    font-weight: bold;
+}
+.edit-news #newsDescription {
+    border-radius: 10px;
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: lightgray;
+    font-weight: bold;
+}
+.edit-news .button-container {
+    display: flex;
+    justify-content: space-between;
+}
+.edit-news #editButton {
+    border-radius: 5px;
+    padding: 10px;
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    width: 49%;
+}
+.edit-news #cancelButton {
+    border-radius: 5px;
+    padding: 10px;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    float: right;
+    width: 49%;
+}
+.edit-news textarea {
+    font-family: Arial, sans-serif;
+}
+
+/* Add News */
+.add-news {
+    display: none;
+    width: 90%;
+}
+.add-news #newsTitle {
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: lightgray;
+    font-weight: bold;
+}
+.add-news #newsDescription {
+    border-radius: 10px;
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: lightgray;
+    font-weight: bold;
+}
+.add-news .button-container {
+    display: flex;
+    justify-content: space-between;
+}
+.add-news #createButton {
+    border-radius: 5px;
+    padding: 10px;
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    width: 49%;
+}
+.add-news #cancelButton {
+    border-radius: 5px;
+    padding: 10px;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    float: right;
+    width: 49%;
+}
+.add-news textarea {
+    font-family: Arial, sans-serif;
 }

@@ -13,7 +13,7 @@
                 $newsId = $row['newsID'];
                 $newsName = $row['newsName'];
                 $newsDate = $row['newsDate'];
-                $newsDescription = $row['newsDescription'];
+                $newsDescription = nl2br($row['newsDescription']);
                 $adminId = $row['userID'];
     
                 $news_sql_2 = "SELECT * FROM user WHERE userID = $adminId LIMIT 1";
@@ -194,24 +194,82 @@
                 <div class='content-block'>
                     <h2>".$new['newsName']."</h2><hr>
                     <div class='content-main'>
-                    <p id='Description'>
-                        ".$new['newsDescription']."
-                    </p> 
-                    <div class='content-bottom'>
-                        <p id='ContentDetails'>
-                            Date: ".$new['newsDate']."<br>
-                            Posted by ".$new['adminName']."
-                        </p>
-                        <div class='button-container'>
-                            <img id='EditImgButton' src='images/edit.png' alt='Edit'>
-                            <img id='DeleteImgButton' src='images/delete.png' alt='Delete'>
+                        <p id='Description'>
+                            ".$new['newsDescription']."
+                        </p> 
+                        <div class='content-bottom'>
+                            <p id='ContentDetails'>
+                                Date: ".$new['newsDate']."<br>
+                                Posted by ".$new['adminName']."
+                            </p>
+                            <div class='button-container'>
+                                <img id='EditImgButton' src='images/edit.png' alt='Edit'>
+                                <a href='manager/delete_news.php?id=$new[newsId]'><img id='DeleteImgButton' src='images/delete.png' alt='Delete'></a>
+                            </div>
                         </div>
                     </div>
+                    <div class='edit-news'>
+                        <hr><br>
+                        <form action='manager/edit_news.php' method='post'>
+                            <input type='hidden' name='newsId' value='".$new['newsId']."'>
+                            <p>Title:<br><br><input type='text' name='newsTitle' id='newsTitle' value='".$new['newsName']."'></p>
+                            <p>Description:<br><br><textarea name='newsDescription' id='newsDescription'>".str_replace(array('<br />', '<br>', '<br/>'), '', $new['newsDescription'])."</textarea></p>
+                            <div class='button-container'>
+                                <button id='editButton'>Confirm</button>
+                                <button id='cancelButton'>Cancel</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             ");
         }
-        echo "<img id='Add' src='images/add.png' alt='Add'>";
+        echo ("
+            <img id='AddNewsImgButton' src='images/add.png' alt='Add'>
+            <div class='add-news'>
+                <hr><br>
+                <form action='manager/add_news.php' method='post'>
+                    <p>Title:<br><br><input type='text' name='newsTitle' id='newsTitle'></p>
+                    <p>Description:<br><br><textarea name='newsDescription' id='newsDescription'></textarea></p>
+                    <div class='button-container'>
+                        <button id='createButton'>Create</button>
+                        <button id='cancelButton'>Cancel</button>
+                    </div>
+                </form>
+            </div>  
+        ");
+
+        echo ("
+            <script>
+                var contentBlocks = document.getElementsByClassName('content-block');
+
+                for (let i = 0; i < contentBlocks.length; i++) {
+                    var editImgButton = contentBlocks[i].getElementsByTagName('img')[0];
+                    editImgButton.onclick = function(){
+                        var editNews = contentBlocks[i].getElementsByClassName('edit-news')[0];
+                        editNews.style.display = editNews.style.display == 'none' ? 'block' : 'none';
+                    }
+
+                    var cancelButton = contentBlocks[i].getElementsByTagName('button')[1];
+                    cancelButton.onclick = function(){
+                        event.preventDefault();
+                        var editNews = contentBlocks[i].getElementsByClassName('edit-news')[0];
+                        editNews.style.display = 'none';
+                    }
+                }
+
+                var addNewsImgButton = document.getElementById('AddNewsImgButton');
+                addNewsImgButton.onclick = function(){
+                    var addNews = document.getElementsByClassName('add-news')[0];
+                    addNews.style.display = addNews.style.display == 'none' ? 'block' : 'none';
+                }
+                var cancelButton = document.getElementsByClassName('add-news')[0].getElementsByTagName('button')[1];
+                cancelButton.onclick = function(){
+                    event.preventDefault();
+                    var addNews = document.getElementsByClassName('add-news')[0];
+                    addNews.style.display = 'none';
+                }
+            </script>
+        ");
     }
 
     function displayRole($roles){
