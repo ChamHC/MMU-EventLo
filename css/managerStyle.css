@@ -363,3 +363,51 @@ tr:nth-child(odd){
 .edit-announcement textarea {
     font-family: Arial, sans-serif;
 }
+
+/* Edit FAQ */
+.edit-faq {
+    display: none;
+}
+.edit-faq #faqQuestion {
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: lightgray;
+    font-weight: bold;
+}
+.edit-faq #faqAnswer {
+    border-radius: 10px;
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: lightgray;
+    font-weight: bold;
+}
+.edit-faq .button-container {
+    display: flex;
+    justify-content: space-between;
+}
+.edit-faq #editButton {
+    border-radius: 5px;
+    padding: 10px;
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    width: 49%;
+}
+.edit-faq #cancelButton {
+    border-radius: 5px;
+    padding: 10px;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    float: right;
+    width: 49%;
+}
+.edit-faq textarea {
+    font-family: Arial, sans-serif;
+}

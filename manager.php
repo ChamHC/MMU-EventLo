@@ -163,7 +163,7 @@
             while ($row = $faq_result->fetch_assoc()) {
                 $faqId = $row['faqID'];
                 $faqQuestion = $row['question'];
-                $faqAnswer = $row['answer'];
+                $faqAnswer = nl2br($row['answer']);
                 $faqSeverity = $row['severityQuestion'];
                 $userId = $row['userID'];
 
@@ -422,12 +422,57 @@
                         <p id='PostedBy'>$faq[faqSeverity] Severity | Posted by $faq[username] </p>
                         <div class='button-container'>
                             <button id='EditButton'>Edit</button>
-                            <button id='RemoveButton'>Remove</button>
+                            <a href='manager/remove_faq.php?id=$faq[faqId]'><button id='RemoveButton'>Remove</button></a>
                         </div>
+                    </div>
+                    <div class='edit-faq'>
+                        <hr><br>
+                        <form action='manager/edit_faq.php' method='post'>
+                            <input type='hidden' name='faqId' value='".$faq['faqId']."'>
+                            <p>Question:<br><br><input type='text' name='faqQuestion' id='faqQuestion' value='".$faq['faqQuestion']."'></p>
+                            <p>Answer:<br><br><textarea name='faqAnswer' id='faqAnswer'>".str_replace(array('<br />', '<br>', '<br/>'), '', $faq['faqAnswer'])."</textarea></p>
+                            <p>Severity:
+                                <select name='faqSeverity' id='faqSeverity'>
+                                    <option value='Low'");
+                                    if ($faq['faqSeverity'] == 'Low') echo(" selected");
+                                    echo(" >Low</option>
+                                    <option value='Medium'");
+                                    if ($faq['faqSeverity'] == 'Medium') echo(" selected");
+                                    echo(" >Medium</option>
+                                    <option value='High'");
+                                    if ($faq['faqSeverity'] == 'High') echo (" selected");
+                                    echo(">High</option>
+                                </select>
+                            </p>
+                            <div class='button-container'>
+                                <button id='editButton'>Confirm</button>
+                                <button id='cancelButton'>Cancel</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             ");
         }
+
+        echo("
+            <script>
+                var contentBlocks = document.getElementsByClassName('content-block');
+                for (let i= 0; i < contentBlocks.length; i++) {
+                    var editButton = contentBlocks[i].getElementsByTagName('button')[0];
+                    editButton.onclick = function(){
+                        var editFAQ = contentBlocks[i].getElementsByClassName('edit-faq')[0];
+                        editFAQ.style.display = editFAQ.style.display == 'none' ? 'block' : 'none';
+                    }
+
+                    var cancelButton = contentBlocks[i].getElementsByTagName('button')[3];
+                    cancelButton.onclick = function(){
+                        event.preventDefault();
+                        var editFAQ = contentBlocks[i].getElementsByClassName('edit-faq')[0];
+                        editFAQ.style.display = 'none';
+                    }
+                }
+            </script>
+        ");
     }
 ?>
 
