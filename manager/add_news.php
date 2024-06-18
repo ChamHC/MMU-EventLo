@@ -16,8 +16,10 @@
     $newsDate = date('Y-m-d');
     $userId = 1;
 
-    $query = "INSERT INTO news (newsName, newsDescription, newsDate, userID) VALUES ('$newsTitle', '$newsDescription', '$newsDate', '$userId')";
-    $result = $conn->query($query);
+    $query = "INSERT INTO news (newsName, newsDescription, newsDate, userID) VALUES (?, ?, ?, ?)";
+    $statement = $conn->prepare($query);
+    $statement -> bind_param("sssi", $newsTitle, $newsDescription, $newsDate, $userId);
+    $result = $statement->execute();
 
     CloseCon($conn);
 

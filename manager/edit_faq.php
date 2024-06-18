@@ -10,7 +10,6 @@
     $query = "UPDATE faq SET question = ?, answer = ?, severityQuestion = ? WHERE faqID = ?";
     $statement = $conn->prepare($query);
     $statement->bind_param("sssi", $faqQuestion, $faqAnswer, $faqSeverity, $faqID);
-
     $result = $statement->execute();
 
     CloseCon($conn);

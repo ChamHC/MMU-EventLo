@@ -7,10 +7,12 @@
     $announcementDescription = $_POST['announcementDescription'];
     $announcementDate = date('Y-m-d');
     $eventID = $_POST['eventId'];
-    $userID = 1;
-
-    $query = "UPDATE announcement SET announcementName = '$announcementName', announcementDescription = '$announcementDescription', announcementDate = '$announcementDate', eventID = $eventID, userID = $userID WHERE announcementID = $announcementID";
-    $result = $conn->query($query);
+    $userID = 1;    
+    
+    $query = "UPDATE announcement SET announcementName = ?, announcementDescription = ?, announcementDate = ?, eventID = ?, userID = ? WHERE announcementID = ?";
+    $statement = $conn->prepare($query);
+    $statement -> bind_param("sssiii", $announcementName, $announcementDescription, $announcementDate, $eventID, $userID, $announcementID);
+    $result = $statement->execute();
 
     CloseCon($conn);
 

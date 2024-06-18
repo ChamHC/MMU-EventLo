@@ -7,8 +7,10 @@
     $newsDescription = $_POST['newsDescription'];
     $newsDate = date('Y-m-d');
 
-    $query = "UPDATE news SET newsName = '$newsTitle', newsDescription = '$newsDescription', newsDate = '$newsDate' WHERE newsID = $newsID";
-    $result = $conn->query($query);
+    $query = "UPDATE news SET newsName = ?, newsDescription = ?, newsDate = ? WHERE newsID = ?";
+    $statement = $conn->prepare($query);
+    $statement->bind_param("sssi", $newsTitle, $newsDescription, $newsDate, $newsID);
+    $result = $statement->execute();
 
     CloseCon($conn);
 
