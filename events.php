@@ -2,7 +2,7 @@
     require 'db_connect.php';
     $conn = OpenCon();
 
-    $userId = 3;
+    $userId = 4;
 
     $sql = "SELECT * FROM event WHERE eventID IN (SELECT eventID FROM eventuser WHERE userID = $userId)";
     $result = $conn->query($sql);
@@ -39,7 +39,8 @@
                 'eventPicture' => $eventPicture,
                 'eventDescription' => $eventDescription,
                 'hostId' => $hostId,
-                'hostName' => $hostName
+                'hostName' => $hostName,
+                'userId' => $userId
             );
 
             $events[] = $event;
@@ -48,7 +49,7 @@
 
     CloseCon($conn);
 
-    function DisplayEvents($events){
+    function DisplayEvents($events, $userId){
         foreach ($events as $event) {
             echo('
                 <div class="event-container">
@@ -63,8 +64,8 @@
                         <p>Description: <br><span id="description">
                         '.$event['eventDescription'].'
                         </span></p>
-                        <button id="leaveButton">Leave</button>
-                        <button id="announcementButton">Announcement</button>
+                        <a href="events/leave_event.php?eventId='.$event['eventId'].'&userId='.$userId.'" ><button id="leaveButton">Leave</button>
+                        <a href="announcement.php?id='.$event['eventId'].'" ><button id="announcementButton">Announcement</button></a>
                     </div>
                 </div>
             ');
@@ -83,18 +84,46 @@
     <link rel="stylesheet" href="css/footerStyle.css">
     <link rel="stylesheet" href="css/searchStyle.css">
     <link rel="stylesheet" href="css/eventsStyle.css">
-    <script src="js/events.js"></script>
     <title>Events</title>
 </head>
 <body>
     <?php include 'header.php' ?>
     <div class="search">
         <input type="text" id="searchBar" placeholder="Search...">
-        <img src="images/searchIcon.png" alt="Search" id="searchIcon" onclick="searchEvents()"><hr>
+        <img src="images/searchIcon.png" alt="Search" id="searchIcon"><hr>
+        <script>
+            var searchBar = document.getElementById('searchBar');
+            searchBar.addEventListener('keyup', function(event){
+                var searchValue = event.target.value.toLowerCase();
+                var eventContainers = document.getElementsByClassName('event-container');
+                
+                Array.from(eventContainers).forEach(function(eventContainer){
+                    var eventName = eventContainer.getElementsByTagName('h2')[0].innerText;
+                    var eventHost = eventContainer.getElementsByTagName('span')[0].innerText;
+                    var eventDateAndTime = eventContainer.getElementsByTagName('span')[1].innerText;
+                    var eventVenue = eventContainer.getElementsByTagName('span')[2].innerText;
+                    var eventFee = eventContainer.getElementsByTagName('span')[3].innerText;
+                    var eventCapacity = eventContainer.getElementsByTagName('span')[4].innerText;
+                    var eventDescription = eventContainer.getElementsByTagName('span')[5].innerText;
+
+                    if(eventName.toLowerCase().indexOf(searchValue) != -1 || 
+                        eventHost.toLowerCase().indexOf(searchValue) != -1 || 
+                        eventDateAndTime.toLowerCase().indexOf(searchValue) != -1 || 
+                        eventVenue.toLowerCase().indexOf(searchValue) != -1 || 
+                        eventFee.toLowerCase().indexOf(searchValue) != -1 || 
+                        eventCapacity.toLowerCase().indexOf(searchValue) != -1 || 
+                        eventDescription.toLowerCase().indexOf(searchValue) != -1){
+                        eventContainer.style.display = 'flex';
+                    } else {
+                        eventContainer.style.display = 'none';
+                    }
+                });
+            });
+        </script>
     </div>
     <div class="main">
         <?php
-            DisplayEvents($events);
+            DisplayEvents($events, $userId);
         ?>
     </div>
     <?php include 'footer.php' ?>
