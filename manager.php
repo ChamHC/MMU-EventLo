@@ -327,7 +327,7 @@
                     <td>RM".$event['eventFee']."</td>
                     <td>
                         <a href='manager.php?page=announcementManager&id=".$event['eventId']."'><button id='ManageButton'>Manage</button></a>
-                        <button id='RemoveButton'>Remove</button>
+                        <a href='manager/remove_event.php?id=$event[eventId]'><button id='RemoveButton'>Remove</button></a>
                     </td>
                 </tr>
             ");
