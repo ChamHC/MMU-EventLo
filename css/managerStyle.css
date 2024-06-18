@@ -315,3 +315,51 @@ tr:nth-child(odd){
 .add-news textarea {
     font-family: Arial, sans-serif;
 }
+
+/* Edit Announcement */
+.edit-announcement {
+    display: none;
+}
+.edit-announcement #announcementTitle {
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: lightgray;
+    font-weight: bold;
+}
+.edit-announcement #announcementDescription {
+    border-radius: 10px;
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: lightgray;
+    font-weight: bold;
+}
+.edit-announcement .button-container {
+    display: flex;
+    justify-content: space-between;
+}
+.edit-announcement #editButton {
+    border-radius: 5px;
+    padding: 10px;
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    width: 49%;
+}
+.edit-announcement #cancelButton {
+    border-radius: 5px;
+    padding: 10px;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    float: right;
+    width: 49%;
+}
+.edit-announcement textarea {
+    font-family: Arial, sans-serif;
+}

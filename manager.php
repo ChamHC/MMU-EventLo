@@ -111,7 +111,7 @@
         $eventLocation = $row['eventLocation'];
         $eventCapacity = $row['eventCapacity'];
         $eventPicture = 'data:image/jpeg;base64,'.base64_encode($row['eventPicture']);
-        $eventDescription = $row['eventDescription'];
+        $eventDescription = nl2br($row['eventDescription']);
         $hostId = $row['userID'];
 
         $event_sql_2 = "SELECT * FROM user WHERE userID = $hostId LIMIT 1";
@@ -140,7 +140,7 @@
             while ($row = $announcement_result->fetch_assoc()) {
                 $announcementId = $row['announcementID'];
                 $announcementName = $row['announcementName'];
-                $announcementDescription = $row['announcementDescription'];
+                $announcementDescription = nl2br($row['announcementDescription']);
                 $announcementDate = $row['announcementDate'];
 
                 $announcement = array(
@@ -367,8 +367,21 @@
                         <p id='PostedDate'>Posted on $announcement[announcementDate]</p>
                         <div class='button-container'>
                             <img id='EditImgButton' src='images/edit.png' alt='Edit'>
-                            <img id='DeleteImgButton' src='images/delete.png' alt='Delete'>
+                            <a href='manager/delete_announcement.php?id=$announcement[announcementId]&eventId=$event[eventId]'><img id='DeleteImgButton' src='images/delete.png' alt='Delete'></a>
                         </div>
+                    </div>
+                    <div class='edit-announcement'>
+                        <hr><br>
+                        <form action='manager/edit_announcement.php' method='post'>
+                            <input type='hidden' name='announcementId' value='".$announcement['announcementId']."'>
+                            <input type='hidden' name='eventId' value='".$event['eventId']."'>
+                            <p>Title:<br><br><input type='text' name='announcementTitle' id='announcementTitle' value='".$announcement['announcementName']."'></p>
+                            <p>Description:<br><br><textarea name='announcementDescription' id='announcementDescription'>".str_replace(array('<br />', '<br>', '<br/>'), '', $announcement['announcementDescription'])."</textarea></p>
+                            <div class='button-container'>
+                                <button id='editButton'>Confirm</button>
+                                <button id='cancelButton'>Cancel</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             ");
@@ -376,6 +389,26 @@
         echo("
                 </div>
             </div>
+        ");
+
+        echo("
+            <script>
+                var announcements = document.getElementsByClassName('announcement');
+                for (let i= 0; i < announcements.length; i++) {
+                    var editImgButton = announcements[i].getElementsByTagName('img')[0];
+                    editImgButton.onclick = function(){
+                        var editAnnouncement = announcements[i].getElementsByClassName('edit-announcement')[0];
+                        editAnnouncement.style.display = editAnnouncement.style.display == 'none' ? 'block' : 'none';
+                    }
+
+                    var cancelButton = announcements[i].getElementsByTagName('button')[1];
+                    cancelButton.onclick = function(){
+                        event.preventDefault();
+                        var editAnnouncement = announcements[i].getElementsByClassName('edit-announcement')[0];
+                        editAnnouncement.style.display = 'none';
+                    }
+                }
+            </script>
         ");
     }
 
