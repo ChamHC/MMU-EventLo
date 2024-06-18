@@ -7,16 +7,17 @@
             <ul>
                 <li><a href="index.html" id="Home">Home</a></li>
                 <li><a href="catalogue.php" id="ECatalogue">E-Catalogue</a></li>
-                <li><a href="events.php" id="Events">Events</a></li>
+                <li><a href="events.php" id="Events">My Events</a></li>
                 <li><a href="faq.php" id="FAQs">FAQs</a></li>
-                <li><a href="aboutUs.html" id="AboutUs">About Us</a></li>
+                <li><a href="" id="AboutUs">About Us</a></li>
             </ul>
         </nav>
         <img src="images/profile.png" alt="Profile" class="profile-icon" onclick="">
         <nav class="profile-nav">
             <ul>
-                <li><a href="profile.html">Profile</a></li>
-                <li><a href="login.html">Log Out</a></li>
+                <li><a href="profile.php">Profile</a></li>
+                <li><a href="manager.php">Manager</a></li>
+                <li><a href="">Log Out</a></li>
             </ul>
         </nav>
         </header>

@@ -358,6 +358,108 @@
     <div class="search">
         <input type="text" id="searchBar" placeholder="Search...">
         <img src="images/searchIcon.png" alt="Search" id="searchIcon" onclick="searchEvents()"><hr>
+        <script>
+            var searchBar = document.getElementById('searchBar');
+            searchBar.addEventListener('keyup', function(event){
+                var contentBlock = document.getElementsByClassName('content-block');
+                var searchValue = event.target.value.toLowerCase();
+
+                currentPage = new URLSearchParams(window.location.search).get('page');
+                    switch (currentPage) {
+                        case 'newsManager':                
+                            Array.from(contentBlock).forEach(function(contentBlock){
+                                var newsName = contentBlock.getElementsByTagName('h2')[0].innerText;
+                                var newsDescription = contentBlock.getElementsByTagName('p')[0].innerText;
+                                var newsDetails = contentBlock.getElementsByTagName('p')[1].innerText;
+
+                                if(newsName.toLowerCase().indexOf(searchValue) != -1 || 
+                                    newsDescription.toLowerCase().indexOf(searchValue) != -1 || 
+                                    newsDetails.toLowerCase().indexOf(searchValue) != -1){
+                                    contentBlock.style.display = 'block';
+                                } else {
+                                    contentBlock.style.display = 'none';
+                                }
+                            });
+                        break;
+                    case 'roleManager':
+                            var tableRow = document.getElementsByTagName('tr');
+                            Array.from(tableRow).forEach(function(tableRow){
+                                if (tableRow.getElementsByTagName('th').length > 0) return;
+
+                                var username = tableRow.getElementsByTagName('td')[0].innerText;
+                                var userId = tableRow.getElementsByTagName('td')[1].innerText;
+                                var contactNum = tableRow.getElementsByTagName('td')[2].innerText;
+                                var email = tableRow.getElementsByTagName('td')[3].innerText;
+
+                                if(username.toLowerCase().indexOf(searchValue) != -1 || 
+                                    userId.toLowerCase().indexOf(searchValue) != -1 || 
+                                    contactNum.toLowerCase().indexOf(searchValue) != -1 || 
+                                    email.toLowerCase().indexOf(searchValue) != -1){
+                                    tableRow.style.display = 'table-row';
+                                } else {
+                                    tableRow.style.display = 'none';
+                                }
+                            });
+                        break;
+                    case 'eventManager':
+                            var tableRow = document.getElementsByTagName('tr');
+                            Array.from(tableRow).forEach(function(tableRow){
+                                if (tableRow.getElementsByTagName('th').length > 0) return;
+
+                                var eventName = tableRow.getElementsByTagName('td')[0].innerText;
+                                var hostName = tableRow.getElementsByTagName('td')[1].innerText;
+                                var venue = tableRow.getElementsByTagName('td')[2].innerText;
+                                var dateAndTime = tableRow.getElementsByTagName('td')[3].innerText;
+                                var fee = tableRow.getElementsByTagName('td')[4].innerText;
+
+                                if(eventName.toLowerCase().indexOf(searchValue) != -1 || 
+                                    hostName.toLowerCase().indexOf(searchValue) != -1 || 
+                                    venue.toLowerCase().indexOf(searchValue) != -1 || 
+                                    dateAndTime.toLowerCase().indexOf(searchValue) != -1 || 
+                                    fee.toLowerCase().indexOf(searchValue) != -1){
+                                    tableRow.style.display = 'table-row';
+                                } else {
+                                    tableRow.style.display = 'none';
+                                }
+                            });
+                        break;
+                    case 'announcementManager':
+                            var announcement = document.getElementsByClassName('announcement');
+                            Array.from(announcement).forEach(function(announcement){
+                                var announcementName = announcement.getElementsByTagName('h3')[0].innerText;
+                                var announcementDescription = announcement.getElementsByTagName('p')[0].innerText;
+                                var postedDate = announcement.getElementsByTagName('p')[1].innerText;
+
+                                if(announcementName.toLowerCase().indexOf(searchValue) != -1 || 
+                                    announcementDescription.toLowerCase().indexOf(searchValue) != -1 || 
+                                    postedDate.toLowerCase().indexOf(searchValue) != -1){
+                                    announcement.style.display = 'block';
+                                } else {
+                                    announcement.style.display = 'none';
+                                }
+                            });
+                        break;
+                    case 'faqManager':
+                            var contentBlock = document.getElementsByClassName('content-block');
+                            Array.from(contentBlock).forEach(function(contentBlock){
+                                var question = contentBlock.getElementsByTagName('h2')[0].innerText;
+                                var answer = contentBlock.getElementsByTagName('p')[0].innerText;
+                                var details = contentBlock.getElementsByTagName('p')[1].innerText;
+
+                                if(question.toLowerCase().indexOf(searchValue) != -1 || 
+                                    answer.toLowerCase().indexOf(searchValue) != -1 || 
+                                    details.toLowerCase().indexOf(searchValue) != -1){
+                                    contentBlock.style.display = 'block';
+                                } else {
+                                    contentBlock.style.display = 'none';
+                                }
+                            });
+                        break;
+                    default:
+                        break;
+                    }
+            });
+        </script>
     </div>
     <div class="main">
         <div class="buttons">
@@ -379,7 +481,7 @@
                     window.location.href = "manager.php?page=faqManager";
                 }
 
-                var page = window.location.href.split('=')[1];
+                var page = new URLSearchParams(window.location.search).get('page');
                 switch (page) {
                     case 'newsManager':
                         var button = document.getElementById("NewsButton");
