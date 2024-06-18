@@ -292,8 +292,8 @@
                     <td>$role[contactNum]</td>
                     <td>$role[email]</td>
                     <td>
-                        <button id='ApproveButton'>Approve</button>
-                        <button id='RejectButton'>Reject</button>
+                        <a href='manager/manage_role.php?id=$role[userId]&action=approve'><button id='ApproveButton'>Approve</button></a>
+                        <a href='manager/manage_role.php?id=$role[userId]&action=reject'><button id='RejectButton'>Reject</button></a>
                     </td>
                 </tr>
             ");
