@@ -1,0 +1,79 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ff8c42;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    border: 2px solid #000; /* 添加黑色边框 */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    width: 400px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="date"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.gender p {
+    display: flex;
+    gap: 10px;
+    margin: 0;
+}
+
+.gender label {
+    display: flex;
+    align-items: center;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+.sign-up-btn {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #00cc66;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.sign-up-btn:hover {
+    background-color: #00b359;
+}
+
+.divider {
+    border: none;
+    border-top: 2px solid #000;
+    margin: 10px 0; /* 调整上下间距 */
+}

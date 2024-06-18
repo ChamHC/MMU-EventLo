@@ -17,7 +17,7 @@
             <ul>
                 <li><a href="profile.php">Profile</a></li>
                 <li><a href="manager.php">Manager</a></li>
-                <li><a href="">Log Out</a></li>
+                <li><a href="logout.php">Log Out</a></li>
             </ul>
         </nav>
         </header>
