@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require 'db_connect.php';
+require_once 'db_connect.php';
 
 // Function to get role based on userID
 function getUserRole($userID) {
