@@ -26,11 +26,18 @@
 
     $includedFile = basename($_SERVER['PHP_SELF']);
     switch ($includedFile) {
+        case 'catalogue.php':
+        case 'catalogueDetails.php':
+            setColor('ECatalogue');
+            break;
         case 'events.php':
             setColor('Events');
             break;
-        case 'manager.php':
-            setColor('Home');
+        case 'faq.php':
+            setColor('FAQs');
+            break;
+        case 'aboutUs.php':
+            setColor('AboutUs');
             break;
         default:
             setColor('Home');
