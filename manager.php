@@ -1,7 +1,14 @@
 <?php
     if (!isset($_GET['page'])) header('Location: manager.php?page=newsManager');
 
-    require 'db_connect.php';
+    // require 'db_connect.php';
+    require_once 'trackRole.php';
+    $userRole = checkUserRole();
+    if ($userRole != 'Admin') {
+        header('Location: catalogue.php');
+        exit();
+    }
+
     $conn = OpenCon();
 
     if ($_GET['page'] == 'newsManager'){

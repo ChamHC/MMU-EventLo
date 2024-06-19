@@ -1,8 +1,16 @@
 <?php
-    require 'db_connect.php';
-    $conn = OpenCon();
+    // require 'db_connect.php';
+    require_once 'trackRole.php';
+    $userRole = checkUserRole();
+    if ($userRole == null) {
+        header('Location: catalogue.php');
+        exit();
+    }
+    else{
+        $userId = $_SESSION['mySession'];
+    }
 
-    $userId = 4;
+    $conn = OpenCon();
 
     $sql = "SELECT * FROM event WHERE eventID IN (SELECT eventID FROM eventuser WHERE userID = $userId)";
     $result = $conn->query($sql);
