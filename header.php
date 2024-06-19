@@ -1,4 +1,7 @@
 <?php
+    require_once 'trackRole.php';
+    $userRole = checkUserRole();
+
     echo(
         '
         <header>
@@ -16,7 +19,9 @@
         <nav class="profile-nav">
             <ul>
                 <li><a href="profile.php">Profile</a></li>
-                <li><a href="manager.php">Manager</a></li>
+    ');
+    if ($userRole == 'Admin') echo '<li><a href="manager.php">Manager</a></li>';
+    echo('
                 <li><a href="logout.php">Log Out</a></li>
             </ul>
         </nav>
