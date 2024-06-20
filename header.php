@@ -8,7 +8,7 @@
         <a href="index.html"><img src="images/logo.png" alt="MMU Event Organizer" class="logo"></a>
         <nav class="main-nav">
             <ul>
-                <li><a href="index.html" id="Home">Home</a></li>
+                <li><a href="home.php" id="Home">Home</a></li>
                 <li><a href="catalogue.php" id="ECatalogue">E-Catalogue</a></li>
                 <li><a href="events.php" id="Events">My Events</a></li>
                 <li><a href="faq.php" id="FAQs">FAQs</a></li>
