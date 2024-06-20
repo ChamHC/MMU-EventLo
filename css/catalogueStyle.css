@@ -21,7 +21,6 @@ body {
 .left-catalogue-container,
 .right-catalogue-container {
     flex: 0 0 48%;
-    /* Adjust the width as needed */
     padding: 20px;
     border: 2px dotted black;
     border-radius: 10px;
@@ -39,17 +38,9 @@ body {
     height: 100%;
 }
 
-.event-item img {
-    width: 250px;
-    height: auto;
-    display: block;
-    margin: 0 auto 10px auto;
-}
-
 .event-details {
     width: 100%;
     text-align: right;
-    /* Align button to the right */
 }
 
 .event-details hr {
@@ -84,7 +75,6 @@ body {
     width: 200px;
     box-sizing: border-box;
     align-self: flex-end;
-    /* Aligns the button to the right */
 }
 
 .event-details button {
@@ -98,6 +88,4 @@ body {
     border-radius: 5px;
     font-size: 20px;
     color: #721c24;
-    margin-top: 10px;
-
 }

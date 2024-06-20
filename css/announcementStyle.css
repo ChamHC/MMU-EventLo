@@ -1,23 +1,19 @@
-.event-container {
+.announcement-container {
     border: 2px dotted black;
     border-radius: 10px;
     padding: 20px;
     margin: 10px;
+    box-sizing: border-box;
+    max-width: 100%;
     display: flex;
-    align-items: center; 
-    flex-wrap: wrap; 
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
-    max-width: 100%; /* Ensure container doesn't exceed the parent width */
-}
-
-.event-container img {
-    margin-right: 20px;
+    /* Ensure flex layout */
+    flex-direction: column;
+    /* Stack child elements vertically */
 }
 
 .event-details {
-    flex: 1; 
-    min-width: 0; /* Prevent overflow */
-    word-wrap: break-word; /* Break long words */
+    flex: 1;
+    /* Expand to fill remaining space */
 }
 
 .event-details hr {
@@ -52,19 +48,20 @@
     padding: 10px;
     margin: 10px 10px;
     cursor: pointer;
-    float: right;
     font-weight: bold;
     width: 200px;
+    align-self: flex-end;
+    /* Align button to the end of the container */
 }
 
 .content-bottom {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
 }
 
-#EditImgButton, #DeleteImgButton {
+#EditImgButton,
+#DeleteImgButton {
     width: 50px;
     height: 50px;
     cursor: pointer;
@@ -74,23 +71,25 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    width: 100%; /* or specific width if needed */
-    margin: 0 auto; /* center the container if needed */
+    width: 100%;
+    margin: 0 auto;
 }
 
 #Add {
     width: 50px;
     height: 50px;
-    margin: 10px 20px 0 0; /* Adjust margin as needed */
+    margin: 10px 20px 0 0;
     cursor: pointer;
 }
 
+/* Rest of the CSS remains unchanged */
+
 .announcement-panel {
-    display: none; /* Ensure the panel is hidden by default */
+    display: none;
     border: 2px solid black;
     border-radius: 5px;
     padding: 20px;
-    box-sizing: border-box; 
+    box-sizing: border-box;
     position: fixed;
     z-index: 1;
     left: 0;
@@ -98,7 +97,7 @@
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .announcement-panel-inner {
@@ -109,7 +108,7 @@
     width: 80%;
     max-width: 600px;
     border-radius: 5px;
-    position: relative; /* Make inner container position relative to correctly place close button */
+    position: relative;
 }
 
 .close-button {
@@ -128,33 +127,36 @@
     text-decoration: none;
 }
 
-/* Add styles for form labels and inputs */
-#announcementUploadForm {
+#announcementUploadForm,
+#announcementEditForm {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     position: relative;
 }
 
-#announcementUploadForm label {
+#announcementUploadForm label,
+#announcementEditForm label {
     width: 100%;
-    max-width: 100px; /* Set the desired width for the labels */
+    max-width: 100px;
     text-align: left;
     margin-bottom: 10px;
     font-weight: bold;
 }
 
 #announcementUploadForm textarea,
-#announcementUploadForm input[type="file"] {
-    width: calc(100% - 110px); /* Subtract label width and margin */
+#announcementUploadForm input[type="file"],
+#announcementEditForm textarea,
+#announcementEditForm input[type="file"] {
+    width: calc(100% - 110px);
     margin-bottom: 10px;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
 }
 
-/* Position upload button at the bottom right */
-#announcementUploadForm .button-container {
+#announcementUploadForm .button-container,
+#announcementEditForm .button-container {
     display: flex;
     justify-content: flex-end;
     width: 100%;
@@ -163,7 +165,8 @@
     right: 10px;
 }
 
-#announcementUploadForm button {
+#announcementUploadForm button,
+#announcementEditForm button {
     background-color: #ff914d;
     color: black;
     border: 3px solid black;
@@ -173,15 +176,75 @@
     font-weight: bold;
 }
 
-#announcementUploadForm button:hover {
+#announcementUploadForm button:hover,
+#announcementEditForm button:hover {
     color: white;
     background-color: green;
 }
 
-/* Ensure file input is accessible */
-#announcementUploadForm input[type="file"] {
+#announcementUploadForm input[type="file"],
+#announcementEditForm input[type="file"] {
     display: block;
-    width: calc(100% - 20px); /* Adjust width if necessary */
+    width: calc(100% - 20px);
     margin-bottom: 20px;
     cursor: pointer;
+}
+
+
+/* Added styles to fix the display issue */
+#outputTitle,
+#outputDescription {
+    white-space: normal;
+    /* Ensure text wraps normally */
+}
+
+.confirmation-panel {
+    display: none;
+}
+
+.confirmation-panel-outer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent background */
+    display: none;
+    /* Hide by default */
+    justify-content: center;
+    /* Center horizontally */
+    align-items: center;
+    /* Center vertically */
+}
+
+.confirmation-panel-inner {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    /* Box shadow for effect */
+}
+
+.confirmation-panel-outer.show {
+    display: flex;
+    /* Show when needed */
+}
+
+.no-announcements-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.no-announcements-message {
+    background-color: #f8d7da;
+    padding: 10px;
+    font-size: 20px;
+    color: #721c24;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    display: inline-block;
+    border-radius: 5px;
 }

@@ -1,16 +1,15 @@
-
 <?php
 require 'db_connect.php';
 $conn = OpenCon();
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['joinEvent'])) {
-   // Retrieve the eventID from the URL
-if (!isset($_GET['eventId']) || !isset($_GET['userId'])) {
-    die("Event ID or User ID is missing");
-}
-$eventId = $_GET['eventId'];
-$userId = $_GET['userId'];
+    // Retrieve the eventID from the URL
+    if (!isset($_GET['eventId']) || !isset($_GET['userId'])) {
+        die("Event ID or User ID is missing");
+    }
+    $eventId = $_GET['eventId'];
+    $userId = $_GET['userId'];
 
 
     // Insert into eventuser table
@@ -22,7 +21,7 @@ $userId = $_GET['userId'];
     } else {
         $message = "Error: " . $conn->error;
     }
-    
+
 }
 
 // Retrieve the eventID from the URL
@@ -57,18 +56,18 @@ if ($result === false) {
     // Display the event details
     $eventDetails = '
         <div class="event-container">
-            <img src="'.$eventPicture.'" alt="Event Cover Image">
+            <img src="' . $eventPicture . '" alt="Event Cover Image">
             <div class="event-details">
-                <h2>'.$eventName.'</h2><hr>
-                <p id="hostedBy">Hosted by <span id="host">'.$hostName.'</span></p>
-                <p>Date and Time: <span id="dateAndTime">'.$eventDate.', '.$eventTime.'</span></p>
-                <p>Venue: <span id="venue">'.$eventLocation.'</span></p>
-                <p>Fee: <span id="fee">RM'.$eventFee.'</span></p>
-                <p>Capacity: <span id="capacity">'.$eventCapacity.'</span></p>
-                <p>Description: <br><span id="description">'.$eventDescription.'</span></p>
+                <h2>' . $eventName . '</h2><hr>
+                <p id="hostedBy">Hosted by <span id="host">' . $hostName . '</span></p>
+                <p>Date and Time: <span id="dateAndTime">' . $eventDate . ', ' . $eventTime . '</span></p>
+                <p>Venue: <span id="venue">' . $eventLocation . '</span></p>
+                <p>Fee: <span id="fee">RM' . $eventFee . '</span></p>
+                <p>Capacity: <span id="capacity">' . $eventCapacity . '</span></p>
+                <p>Description: <br><span id="description">' . $eventDescription . '</span></p>
                 <form method="post" action="">
-                    <input type="hidden" name="userId" value="'.$userId.'">
-                    <input type="hidden" name="eventId" value="'.$eventId.'">
+                    <input type="hidden" name="userId" value="' . $userId . '">
+                    <input type="hidden" name="eventId" value="' . $eventId . '">
                     <button type="submit" name="joinEvent">Join</button>
                 </form>
             </div>
@@ -83,6 +82,7 @@ CloseCon($conn);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -94,6 +94,7 @@ CloseCon($conn);
     <link rel="stylesheet" href="css/catalogueDetailsStyle.css">
     <title>E-Catalogue Details</title>
 </head>
+
 <body>
     <?php include 'header.php'; ?>
     <div class="search">
@@ -101,13 +102,14 @@ CloseCon($conn);
         <img src="images/searchIcon.png" alt="Search" id="searchIcon" onclick="searchEvents()">
     </div>
     <div class="main-content">
-        <?php 
+        <?php
         if (isset($message)) {
             echo '<p>' . $message . '</p>';
         }
-        echo $eventDetails; 
+        echo $eventDetails;
         ?>
     </div>
     <?php include 'footer.php'; ?>
 </body>
+
 </html>

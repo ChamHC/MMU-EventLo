@@ -1,14 +1,19 @@
-
 <?php
-require 'db_connect.php';
-$conn = OpenCon();
+require_once 'trackRole.php';
+$userRole = checkUserRole();
+if ($userRole == null) {
+    header('Location: login.php');
+    exit();
+} else {
+    $userId = $_SESSION['mySession'];
+}
 
-$userId = 9;
+$conn = OpenCon();
 
 // Get the current date
 $currentDate = date('Y-m-d');
 
-// SQL query to get upcoming events that the user hasn't registered for
+// Get upcoming events that the user hasn't registered for
 $sql = "
     SELECT * FROM event 
     WHERE eventDate > '$currentDate' 
@@ -27,11 +32,11 @@ if ($result->num_rows > 0) {
         $eventTime = $row['eventTime'];
         $eventLocation = $row['eventLocation'];
         $eventCapacity = $row['eventCapacity'];
-        $eventPicture = 'data:image/jpeg;base64,'.base64_encode($row['eventPicture']);
+        $eventPicture = 'data:image/jpeg;base64,' . base64_encode($row['eventPicture']);
         $eventDescription = $row['eventDescription'];
         $hostId = $row['userID'];
-        
-        // Fetch the host's name
+
+        // Get host's name
         $sql2 = "SELECT * FROM user WHERE userID = $hostId LIMIT 1";
         $result2 = $conn->query($sql2);
         $row2 = $result2->fetch_assoc();
@@ -57,32 +62,34 @@ if ($result->num_rows > 0) {
 
 CloseCon($conn);
 
-function DisplayEvents($events, $userId){
+// Display event that upcoming
+function DisplayEvents($events, $userId)
+{
     $count = 0;
-    echo('<div class="catalogue-pair">');
+    echo ('<div class="catalogue-pair">');
     foreach ($events as $event) {
         if ($count % 2 == 0 && $count != 0) {
-            echo('</div><div class="catalogue-pair">');
+            echo ('</div><div class="catalogue-pair">');
         }
-        
+
         $containerClass = ($count % 2 == 0) ? 'left-catalogue-container' : 'right-catalogue-container';
-        echo('
-            <div class="'.$containerClass.'">
+        echo ('
+            <div class="' . $containerClass . '">
                 <div class="event-item">
-                    <img src="'.$event['eventPicture'].'" alt="Event Cover Image" class="center">
+                    <img src="' . $event['eventPicture'] . '" alt="Event Cover Image" class="center">
                     <div class="event-details">
-                        <h2>'.$event['eventName'].'</h2>
-                        <p id="hostedBy">Hosted by <span id="host">'.$event['hostName'].'</span></p>
-                        <button class="eventDetailsButton" onclick="navigateToCatalogueDetailsPage('.$event['eventId'].', '.$userId.')">Details</button>
+                        <h2>' . $event['eventName'] . '</h2>
+                        <p id="hostedBy">Hosted by <span id="host">' . $event['hostName'] . '</span></p>
+                        <button class="eventDetailsButton" onclick="navigateToCatalogueDetailsPage(' . $event['eventId'] . ', ' . $userId . ')">Details</button>
                     </div>
                 </div>
             </div>
         ');
-        
+
         $count++;
     }
-    echo('</div>');
-    echo('</br>');
+    echo ('</div>');
+    echo ('</br>');
 
     if (empty($events)) {
         echo '<p class="no-events-message">No upcoming events that you have not joined.</p>';
@@ -92,6 +99,7 @@ function DisplayEvents($events, $userId){
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -103,12 +111,33 @@ function DisplayEvents($events, $userId){
     <link rel="stylesheet" href="css/catalogueStyle.css">
     <title>E-Catalogue</title>
 </head>
+
 <body>
     <?php include 'header.php' ?>
     <div class="search">
         <input type="text" id="searchBar" placeholder="Search...">
-        <img src="images/searchIcon.png" alt="Search" id="searchIcon" onclick="searchEvents()">
+        <img src="images/searchIcon.png" alt="Search" id="searchIcon">
         <hr>
+        <script>
+            var searchBar = document.getElementById('searchBar');
+            searchBar.addEventListener('keyup', function (event) {
+                var searchValue = event.target.value.toLowerCase();
+                var eventContainers = document.querySelectorAll('.left-catalogue-container, .right-catalogue-container');
+
+                Array.from(eventContainers).forEach(function (eventContainer) {
+                    var eventName = eventContainer.getElementsByTagName('h2')[0].innerText.toLowerCase();
+                    var eventHost = eventContainer.getElementsByTagName('span')[0].innerText.toLowerCase();
+
+                    if (eventName.indexOf(searchValue) !== -1 || eventHost.indexOf(searchValue) !== -1) {
+                        eventContainer.style.display = 'flex';
+                    } else {
+                        eventContainer.style.display = 'none';
+                    }
+                });
+            });
+
+
+        </script>
     </div>
     <div class="main-content">
         <?php DisplayEvents($events, $userId); ?>
@@ -116,8 +145,9 @@ function DisplayEvents($events, $userId){
     <?php include 'footer.php' ?>
     <script>
         function navigateToCatalogueDetailsPage(eventId, userId) {
-            window.location.href = "catalogueDetails.php?eventId=" + eventId + "&userId=" + userId; 
+            window.location.href = "catalogueDetails.php?eventId=" + eventId + "&userId=" + userId;
         }
     </script>
 </body>
+
 </html>
