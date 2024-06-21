@@ -23,7 +23,7 @@
             $_SESSION["mySession"]=$row['userID'];
 
             // redirect to home page, now is roleTest for testing the role checking from acc
-            header('Location: roleTest.php');
+            header('Location: index.php');
             exit();
         }
         else{

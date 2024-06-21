@@ -97,10 +97,6 @@ CloseCon($conn);
 
 <body>
     <?php include 'header.php'; ?>
-    <div class="search">
-        <input type="text" id="searchBar" placeholder="Search...">
-        <img src="images/searchIcon.png" alt="Search" id="searchIcon" onclick="searchEvents()">
-    </div>
     <div class="main-content">
         <?php
         if (isset($message)) {
