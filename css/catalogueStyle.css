@@ -43,6 +43,11 @@ body {
     text-align: right;
 }
 
+.event-item img {
+    width: 300px; 
+    margin: 0 auto; 
+}
+
 .event-details hr {
     border: 1px solid black;
     margin: 10px 0;

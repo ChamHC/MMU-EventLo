@@ -3,16 +3,17 @@
     border-radius: 10px;
     padding: 20px;
     margin: 10px;
-}
-
-.event-container {
     display: flex;
     align-items: center;
 }
 
 .event-container img {
-
     margin-right: 20px;
+    width: 400px;
+}
+
+.event-details{
+    width: 100%;
 }
 
 .event-details hr {
