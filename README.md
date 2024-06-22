@@ -12,13 +12,19 @@ The MMU Event Organizer is a web-based platform designed to enhance community en
 ## Navigation 
 
 ### Login Page
-- ADD CONTENT HERE
+- Enter the correct account's username and password to login.
+- Can register an account by click register button.
 
 ### Register Page
-- ADD CONTENT HERE
+- Enter valid information to sign up an account.
+- All the account will be register as user account.
 
 ### Home Page
-- ADD CONTENT HERE.
+- Every users can view the news that write by admin.
+- Automatically display a news item every 3 seconds 
+  or click the arrow button to view previous or next.
+- Every users can view the top 3 recent events in home page.
+- Click the image of the event can view more details information.
 
 ### E-Catalogue Page
 - View Events that users haven't register for.
@@ -34,7 +40,8 @@ The MMU Event Organizer is a web-based platform designed to enhance community en
 - ADD CONTENT HERE
 
 ### About Us Page
-- ADD CONTENT HERE
+- Every users can view the information about production team and web page introductions.
+
 
 ### Profile Page
 - ADD CONTENT HERE
@@ -49,7 +56,9 @@ The MMU Event Organizer is a web-based platform designed to enhance community en
 ## Main Features
 
 1. **User Registration and Authentication:**
-    - ADD CONTENT HERE
+    - Enter valid information to sign up an account.
+    - All the account will be register as user account.
+    - If invalid information is enter system will ask for reenter.    
 
 2. **Event Management:**
     - Users can join and leave events on their own.
