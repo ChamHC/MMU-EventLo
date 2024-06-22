@@ -37,32 +37,32 @@
         </p>
         <div class="team">
             <div class="member">
-                <img src="images/AboutUs/shiyi.png" alt="Ong Shi Yi">
+                <img src="images/Member/shiyi.jpg" alt="Ong Shi Yi">
                 <p>Name: Ong Shi Yi<br>
-                    Student ID: 123<br>
+                    Student ID: 1201101485<br>
                     Section: TC1L<br>
-                    Contact: 123</p>
+                    Contact: 1201101485@student.mmu.edu.my</p>
             </div>
             <div class="member">
-                <img src="images/AboutUs/haocheng.png" alt="Cham Hao Cheng">
+                <img src="images/Member/haocheng.jpg" alt="Cham Hao Cheng">
                 <p>Name: Cham Hao Cheng<br>
-                    Student ID: 123<br>
+                    Student ID: 1211304951<br>
                     Section: TC1L<br>
-                    Contact: 123</p>
+                    Contact: 1211304951@student.mmu.edu.my</p>
             </div>
             <div class="member">
-                <img src="images/AboutUs/yongzhi.png" alt="Low Yong Zhi">
+                <img src="images/Member/yongzhi.jpg" alt="Low Yong Zhi">
                 <p>Name: Low Yong Zhi<br>
-                    Student ID: 123<br>
+                    Student ID: 1201100503<br>
                     Section: TC1L<br>
-                    Contact: 123</p>
+                    Contact: 1201100503@student.mmu.edu.my</p>
             </div>
             <div class="member">
-                <img src="images/AboutUs/weipang.png" alt="Lim Wei Pang">
+                <img src="images/Member/weipang.png" alt="Lim Wei Pang">
                 <p>Name: Lim Wei Pang<br>
-                    Student ID: 123<br>
+                    Student ID: 1201100622<br>
                     Section: TC1L<br>
-                    Contact: 123</p>
+                    Contact: 1201100622@student.mmu.edu.my</p>
             </div>
         </div>
     </div>

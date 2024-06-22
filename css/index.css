@@ -26,38 +26,41 @@ h2 {
     padding: 20px;
     display: flex;
     align-items: center;
+    justify-content: center; /* Center content */
 }
 
 .mySlides {
     display: none;
     flex-direction: row;
     align-items: center;
+    justify-content: center; /* Center content */
     width: 100%;
 }
 
 .slide-content {
     display: flex;
     align-items: center;
+    justify-content: center; /* Center content */
     flex: 1;
-}
-
-.event-img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    margin-left: 50px;
-    margin-right: 20px;
 }
 
 .text {
     color: #333;
     font-size: 18px;
-    text-align: left;
+    text-align: center; /* Center text */
 }
 
 .text p{
     margin-bottom: 10px;
 }
+
+.news-name {
+    font-size: 24px; /* Increase font size */
+    font-weight: bold; /* Make text bold */
+    text-decoration: underline; /* Add underline */
+    margin-bottom: 10px; /* Add some space below */
+}
+
 
 /* The dots/bullets/indicators */
 .dot {

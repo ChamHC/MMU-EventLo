@@ -1,29 +1,31 @@
 <?php
-include 'db_connect.php';
+require_once 'trackRole.php';
+$userRole = checkUserRole();
+if ($userRole == null) {
+    header('Location: login.php');
+    exit();
+} else {
+    $userId = $_SESSION['mySession'];
+}
 
 $conn = OpenCon();
 
-// Query to get the latest 3 events by eventID
-$query_latest = "
-    SELECT event.eventID, event.eventName, event.eventLocation, event.eventDate, event.eventTime, event.eventPicture, user.username 
-    FROM event 
-    JOIN user ON event.userID = user.userID
-    ORDER BY event.eventID DESC
-    LIMIT 3
+// Query to get all news
+$query_news = "
+    SELECT newsID, newsName, newsDate, newsDescription
+    FROM news
+    ORDER BY newsDate DESC
 ";
-$result_latest = mysqli_query($conn, $query_latest);
+$result_news = mysqli_query($conn, $query_news);
 
-$latest_events = array();
+$news_items = array();
 
-while ($row = mysqli_fetch_assoc($result_latest)) {
-    $latest_events[] = array(
-        'eventID' => $row['eventID'],
-        'eventName' => $row['eventName'],
-        'eventLocation' => $row['eventLocation'],
-        'eventDate' => date('j F Y', strtotime($row['eventDate'])),
-        'eventTime' => $row['eventTime'],
-        'eventPicture' => 'data:image/jpeg;base64,' . base64_encode($row['eventPicture']),
-        'username' => $row['username']
+while ($row = mysqli_fetch_assoc($result_news)) {
+    $news_items[] = array(
+        'newsID' => $row['newsID'],
+        'newsName' => $row['newsName'],
+        'newsDate' => date('j F Y', strtotime($row['newsDate'])),
+        'newsDescription' => $row['newsDescription']
     );
 }
 
@@ -56,6 +58,7 @@ CloseCon($conn);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -63,9 +66,10 @@ CloseCon($conn);
     <link rel="stylesheet" href="css/resetStyle.css">
     <link rel="stylesheet" href="css/headerStyle.css">
     <link rel="stylesheet" href="css/footerStyle.css">
-    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/index.css">
     <title>Events overview</title>
 </head>
+
 <body>
 
     <?php include 'header.php' ?>
@@ -77,16 +81,13 @@ CloseCon($conn);
     <div class="slideshow-container">
         <!-- Next and previous buttons -->
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <?php foreach ($latest_events as $index => $event): ?>
+        <?php foreach ($news_items as $index => $news): ?>
             <div class="mySlides">
                 <div class="slide-content">
-                    <img src="<?= $event['eventPicture']; ?>" class="event-img">
                     <div class="text">
-                        <p>Name: <?= $event['eventName']; ?></p>
-                        <p>Host: <?= $event['username']; ?></p>
-                        <p>Location: <?= $event['eventLocation']; ?></p>
-                        <p>Date: <?= $event['eventDate']; ?></p>
-                        <p>Time: <?= $event['eventTime']; ?></p>
+                        <p class="news-name"> <?= $news['newsName']; ?></p>
+                        <p>Date: <?= $news['newsDate']; ?></p>
+                        <p>Description: <?= $news['newsDescription']; ?></p>
                     </div>
                 </div>
             </div>
@@ -97,7 +98,7 @@ CloseCon($conn);
 
     <!-- The dots/circles -->
     <div style="text-align:center">
-        <?php foreach ($latest_events as $index => $event): ?>
+        <?php foreach ($news_items as $index => $news): ?>
             <span class="dot" onclick="currentSlide(<?= $index + 1; ?>)"></span>
         <?php endforeach; ?>
     </div>
@@ -106,7 +107,7 @@ CloseCon($conn);
     <div class="recent-events">
         <?php foreach ($upcoming_events as $event): ?>
             <div class="recent-event">
-                <img src="<?= $event['eventPicture']; ?>" class="recent-event-img">
+                <img src="<?= $event['eventPicture']; ?>" class="recent-event-img" onclick="navigateToCatalogueDetailsPage(<?= $event['eventID']; ?>, <?= $userId; ?>)">
                 <p><?= $event['eventName']; ?></p>
                 <p>Date: <?= $event['eventDate']; ?></p>
             </div>
@@ -133,20 +134,25 @@ CloseCon($conn);
             let i;
             let slides = document.getElementsByClassName("mySlides");
             let dots = document.getElementsByClassName("dot");
-            if (n > slides.length) {slideIndex = 1}    
-            if (n < 1) {slideIndex = slides.length}
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
             for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";  
+                slides[i].style.display = "none";
             }
             for (i = 0; i < dots.length; i++) {
                 dots[i].className = dots[i].className.replace(" active", "");
             }
-            slides[slideIndex-1].style.display = "flex";  
-            dots[slideIndex-1].className += " active";
+            slides[slideIndex - 1].style.display = "flex";
+            dots[slideIndex - 1].className += " active";
             timer = setTimeout(() => plusSlides(1), 3000); // Change slide every 3 seconds
         }
 
         showSlides(slideIndex);
+
+        function navigateToCatalogueDetailsPage(eventId, userId) {
+            window.location.href = "catalogueDetails.php?eventId=" + eventId + "&userId=" + userId;
+        }
     </script>
 </body>
+
 </html>
