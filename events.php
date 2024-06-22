@@ -3,7 +3,7 @@
     require_once 'trackRole.php';
     $userRole = checkUserRole();
     if ($userRole == null) {
-        header('Location: catalogue.php');
+        header('Location: index.php');
         exit();
     }
     else{
