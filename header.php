@@ -40,6 +40,7 @@
             setColor('Events');
             break;
         case 'faq.php':
+        case 'faqForm.php':
             setColor('FAQs');
             break;
         case 'aboutUs.php':

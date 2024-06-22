@@ -1,11 +1,4 @@
 <?php
-session_start(); // Start the session
-
-if (!isset($_SESSION['mySession'])) {
-    // Handle the case where the session variable is not set
-    die("User not logged in");
-}
-
 require '../db_connect.php';
 $conn = OpenCon();
 
