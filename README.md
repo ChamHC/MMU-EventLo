@@ -37,14 +37,18 @@ The MMU Event Organizer is a web-based platform designed to enhance community en
 - Verified Hosts can upload, edit, delete announcements.
 
 ### FAQs Page
-- ADD CONTENT HERE
+- View frequently asked questions according to the Severity(High, Medium, Low).
+- Ask Question by fill in the FAQ Form.
 
 ### About Us Page
 - Every users can view the information about production team and web page introductions.
 
 
 ### Profile Page
-- ADD CONTENT HERE
+- View user personal details.
+- Edit personal details.
+- View event that that user had participate before.
+- Users can apply to be host.
 
 ### Manager Page (Admin)
 - Add, Edit, and Delete News.
