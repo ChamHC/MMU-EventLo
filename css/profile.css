@@ -1,0 +1,105 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    font-size: 16px; /* Base font size */
+}
+
+.profile-container {
+    background-color: #fff;
+    max-width: 1000px;
+    margin: 80px auto 60px auto; /* Center horizontally with top and bottom margins */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Apply box shadow */
+}
+
+.profile-container h2 {
+    color: #333;
+    font-size: 24px; /* Title font size */
+}
+
+.profile-container hr {
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 10px 0; /* Margin above and below the horizontal rule */
+}
+
+.profile-row {
+    display: flex; /* Use Flexbox layout */
+    flex-wrap: wrap; /* Wrap items to new line on smaller screens */
+}
+
+.left-column, .right-column {
+    flex: 1; /* Each column takes up equal space */
+    padding: 10px; /* Padding inside each column */
+}
+
+.profile-container p {
+    margin: 10px 0; /* Margin above and below paragraphs */
+    font-size: 18px; /* Adjusted font size for readability */
+}
+
+.profile-container .edit-profile-button {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 20px; /* Margin above the edit profile button */
+    transition: background-color 0.3s ease;
+    font-size: 16px; /* Button font size */
+}
+
+.profile-container .edit-profile-button:hover {
+    background-color: #0056b3; /* Darker background color on hover */
+}
+
+.verify-host-button {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px; /* Margin above the verify host button */
+    font-size: 16px; /* Button font size */
+    transition: background-color 0.3s ease;
+}
+
+.verify-host-button:disabled {
+    background-color: gray;
+    cursor: not-allowed; /* Disable cursor when button is disabled */
+}
+
+.verify-host-button:hover:not(:disabled) {
+    background-color: darkblue; /* Darker background color on hover if button is not disabled */
+}
+
+/* Set specific icon sizes */
+.profile-icon {
+    width: 50px; /* Adjust as needed */
+    height: 50px; /* Adjust as needed */
+}
+
+.header-icon {
+    width: 50px; /* Adjust as needed */
+    height: 50px; /* Adjust as needed */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .profile-row {
+        flex-direction: column; /* Stack columns vertically on smaller screens */
+    }
+
+    .left-column, .right-column {
+        padding: 0; /* Remove padding for a more compact layout */
+    }
+
+    .profile-container {
+        padding: 10px; /* Adjust padding for smaller screens */
+    }
+}

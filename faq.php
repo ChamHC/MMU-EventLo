@@ -1,38 +1,52 @@
 <?php
-include 'db_connect.php';
+require_once 'trackRole.php';
 
-// Open database connection
+// Check user role and redirect if not logged in
+$userRole = checkUserRole();
+if ($userRole == null) {
+    header('Location: login.php');
+    exit();
+} else {
+    $userId = $_SESSION['mySession'];
+}
+
+// Open database connection (assuming OpenCon() and CloseCon() are defined elsewhere)
 $conn = OpenCon();
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch FAQ data
-$sql = "SELECT faqID, question, answer FROM faq";
+// Fetch FAQ data ordered by severityQuestion
+$sql = "SELECT faqID, question, answer, severityQuestion FROM faq ORDER BY FIELD(severityQuestion, 'High', 'Medium', 'Low')";
 $result = $conn->query($sql);
 
 if (!$result) {
     die("Query failed: " . $conn->error);
 }
 
-// Prepare array to hold FAQs
-$faqs = array();
+// Prepare associative array to hold FAQs grouped by severityQuestion
+$groupedFaqs = array(
+    'High' => array(),
+    'Medium' => array(),
+    'Low' => array()
+);
 
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $faqId = $row['faqID'];
-        $question = htmlspecialchars($row['question']);
-        $answer = htmlspecialchars($row['answer']);
+// Fetch FAQs and group them by severityQuestion
+while ($row = $result->fetch_assoc()) {
+    $faqId = $row['faqID'];
+    $question = htmlspecialchars($row['question']);
+    $answer = htmlspecialchars($row['answer']);
+    $severityQuestion = $row['severityQuestion'];
 
-        $faq = array(
-            'faqId' => $faqId,
-            'question' => $question,
-            'answer' => $answer
-        );
+    $faq = array(
+        'faqId' => $faqId,
+        'question' => $question,
+        'answer' => $answer
+    );
 
-        $faqs[] = $faq;
-    }
+    // Push FAQ into appropriate severityQuestion group
+    $groupedFaqs[$severityQuestion][] = $faq;
 }
 
 // Close database connection
@@ -49,21 +63,6 @@ CloseCon($conn);
     <link rel="stylesheet" href="css/footerStyle.css">
     <link rel="stylesheet" href="css/faqStyle.css">
     <title>Frequently Asked Questions (FAQ)</title>
-    <style>
-        .answer {
-            display: none; /* Initially hide the answer */
-        }
-        .question {
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .toggle-icon {
-            margin-left: 10px; /* Adjust icon position */
-            font-weight: bold;
-        }
-    </style>
 </head>
 <body>
     <?php include 'header.php'; ?>
@@ -71,13 +70,16 @@ CloseCon($conn);
         <h1 class="title">Frequently Asked Questions (FAQ)</h1>
         <div class="faq-container">
             <?php
-            if (empty($faqs)) {
-                echo "<p>No FAQs found.</p>";
-            } else {
-                foreach ($faqs as $faq) {
-                    echo "<div class='faq-item'>";
-                    echo "<h2 class='question'>" . $faq['question'] . "<span class='toggle-icon'>></span></h2>";
-                    echo "<p class='answer'>" . $faq['answer'] . "</p>";
+            foreach (['High', 'Medium', 'Low'] as $severityQuestion) {
+                if (!empty($groupedFaqs[$severityQuestion])) {
+                    echo "<div class='severity-section'>";
+                    echo "<h2 class='severity-title'>$severityQuestion Severity</h2>";
+                    foreach ($groupedFaqs[$severityQuestion] as $faq) {
+                        echo "<div class='faq-item'>";
+                        echo "<h3 class='question'>" . $faq['question'] . "<span class='toggle-icon'>></span></h3>";
+                        echo "<p class='answer'>" . $faq['answer'] . "</p>";
+                        echo "</div>";
+                    }
                     echo "</div>";
                 }
             }

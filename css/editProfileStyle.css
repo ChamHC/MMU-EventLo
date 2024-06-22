@@ -1,0 +1,78 @@
+/* editProfileStyle.css */
+
+* {
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    padding-top: 50px; /* Leave space at the top */
+    padding-bottom: 20px; /* Leave space at the bottom */
+}
+
+header {
+    color: #fff;
+    padding: 5px 20px;
+}
+
+footer {
+    color: #fff;
+    padding: 10px 20px;
+    margin-top: auto; /* Push footer to the bottom of the page */
+}
+
+.edit-profile-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Apply box shadow */
+}
+.edit-profile-container h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.edit-profile-container form {
+    display: grid;
+    gap: 10px;
+}
+
+.edit-profile-container label {
+    font-weight: bold;
+}
+
+.edit-profile-container input[type="text"],
+.edit-profile-container input[type="password"],
+.edit-profile-container input[type="email"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); /* Add inset shadow to input fields */
+}
+
+.edit-profile-container button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Apply shadow effect to buttons */
+}
+
+.edit-profile-container button:hover {
+    background-color: #0056b3;
+}

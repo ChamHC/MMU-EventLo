@@ -1,3 +1,4 @@
+/* Reset default styles and set body styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -5,13 +6,15 @@ body {
     background-color: #f9f9f9;
 }
 
+/* Main content container styles */
 .main {
     width: 80%;
-    margin: 80px auto 20px; /* Adjust top and bottom margin to ensure content moves down */
+    margin: 80px auto 20px; /* Adjust top and bottom margin */
     padding: 20px;
     box-sizing: border-box; /* Prevent padding from affecting width */
 }
 
+/* Title styles */
 .title {
     text-align: center;
     color: orange;
@@ -19,18 +22,21 @@ body {
     font-size: 36px;
 }
 
+/* FAQ container styles */
 .faq-container {
     margin-top: 20px;
 }
 
+/* Individual FAQ item styles */
 .faq-item {
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 5px;
-    margin-bottom: 10px;
+    margin-bottom: 20px; /* Increase margin between FAQ items */
     padding: 15px;
 }
 
+/* Question styles */
 .question {
     color: #333;
     font-size: 19px;
@@ -41,6 +47,7 @@ body {
     align-items: center;
 }
 
+/* Answer styles */
 .answer {
     color: #666;
     margin-top: 10px;
@@ -48,11 +55,26 @@ body {
     display: none; /* Initially hide the answer */
 }
 
-.toggle-icon {
-    margin-left: 10px; /* Adjust icon position */
-    font-weight: bold;
+/* Severity section styles */
+.severity-section {
+    margin-bottom: 30px; /* Increase space between severity sections */
+    padding-bottom: 20px; /* Add padding below the section */
+    border-bottom: 1px solid #ccc; /* Add border line between severity sections */
 }
 
+/* Severity title styles */
+.severity-title {
+    color: #555;
+    font-size: 24px;
+    margin-bottom: 10px; /* Adjust space between severity titles */
+}
+
+/* Remove border from the last severity section */
+.severity-section:last-child {
+    border-bottom: none;
+}
+
+/* FAQ icon container styles */
 .faq-icon-container {
     position: fixed;
     bottom: 20px;
@@ -60,6 +82,7 @@ body {
     z-index: 1000; /* Ensure the icon is on top of everything */
 }
 
+/* FAQ icon image styles */
 .faq-icon-container img {
     width: 50px; /* Adjust icon width */
     height: 50px; /* Adjust icon height */
