@@ -21,12 +21,14 @@ The MMU Event Organizer is a web-based platform designed to enhance community en
 - ADD CONTENT HERE.
 
 ### E-Catalogue Page
-- ADD CONTENT HERE.
+- View Events that users haven't register for.
+- Join Events that users haven't register for.
 
 ### My Events Page
 - View Events users have registered for.
 - Access to Announcements for selected Events.
 - Leave Events Users have registered for.
+- Verified Hosts can upload, edit, delete announcements.
 
 ### FAQs Page
 - ADD CONTENT HERE
@@ -50,10 +52,11 @@ The MMU Event Organizer is a web-based platform designed to enhance community en
     - ADD CONTENT HERE
 
 2. **Event Management:**
-    - ADD CONTENT HERE
+    - Users can join and leave events on their own.
 
 3. **Announcements:**
-    - ADD CONTENT HERE
+    - User can view the announcements at that website
+    - Verified Hosts can post the latest announcement for the user to view
 
 4. **FAQs and About Us:**
    - Provides information about the platform and answers to common questions.
