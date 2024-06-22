@@ -5,7 +5,7 @@
     require_once 'trackRole.php';
     $userRole = checkUserRole();
     if ($userRole != 'Admin') {
-        header('Location: catalogue.php');
+        header('Location: index.php');
         exit();
     }
 
