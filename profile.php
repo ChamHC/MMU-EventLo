@@ -65,41 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['verifyHost'])) {
     <link rel="stylesheet" href="css/footerStyle.css">
     <link rel="stylesheet" href="css/profile.css">
     <style>
-        .verify-host-button {
-            <?php if ($applyHost == 0 && $role == 'User') : ?>
-                background-color: blue;
-                cursor: pointer;
-            <?php elseif ($applyHost == 1 && $role == 'User') : ?>
-                background-color: grey;
-                cursor: not-allowed;
-            <?php elseif ($role == 'Host') : ?>
-                background-color: #006b75; 
-                cursor: not-allowed;
-            <?php endif; ?>
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            display: inline-block;
-            margin-top: 10px;
-        }
-        .verify-host-button:hover {
-            <?php if ($applyHost == 0 && $role == 'User') : ?>
-                background-color: darkblue;
-            <?php endif; ?>
-        }
-        .edit-profile-button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            display: inline-block;
-            margin-top: 10px;
-        }
-        .edit-profile-button:hover {
-            background-color: #45a049;
-        }
+    
     </style>
     <title>User Profile</title>
 </head>
@@ -139,7 +105,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['verifyHost'])) {
         <?php if ($role != 'Admin'): ?>
             <!-- Verify Host Button -->
             <form method="post">
-                <button type="submit" class="verify-host-button" name="verifyHost" <?php echo ($applyHost == 1 || $role == 'Host') ? 'disabled' : ''; ?>>
+                <button type="submit" class="verify-host-button" name="verifyHost"
+                    <?php echo ($applyHost == 1 && $role == 'Host') ? 'disabled' : ''; ?>
+                    data-role="<?php echo htmlspecialchars($role); ?>"
+                    data-applyHost="<?php echo htmlspecialchars($applyHost); ?>">
                     <?php
                     if ($applyHost == 0 && $role == 'User') {
                         echo 'Verify';
@@ -147,6 +116,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['verifyHost'])) {
                         echo 'Verifying...';
                     } elseif ($role == 'Host') {
                         echo 'Verify Success';
+                    } else {
+                        echo 'Something wrong. Please contact us.';
                     }
                     ?>
                 </button>

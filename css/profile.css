@@ -58,26 +58,45 @@ body {
 }
 
 .verify-host-button {
-    background-color: blue;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 10px; /* Margin above the verify host button */
-    font-size: 16px; /* Button font size */
-    transition: background-color 0.3s ease;
-}
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
 
-.verify-host-button:disabled {
-    background-color: gray;
-    cursor: not-allowed; /* Disable cursor when button is disabled */
-}
+        /* Blue color for User with applyHost = 0 */
+        .verify-host-button[data-role='User'][data-applyHost='0'] {
+            background-color: blue;
+            color: white;
+        }
 
-.verify-host-button:hover:not(:disabled) {
-    background-color: darkblue; /* Darker background color on hover if button is not disabled */
-}
+        /* Gray color for User with applyHost = 1 */
+        .verify-host-button[data-role='User'][data-applyHost='1'] {
+            background-color: gray;
+            color: white;
+            cursor: not-allowed;
+        }
 
+        /* Cyan color for Host with applyHost = 1 */
+        .verify-host-button[data-role='Host'][data-applyHost='1'] {
+            background-color: #006b75;
+            color: white;
+            cursor: not-allowed;
+        }
+
+        .verify-host-button:hover {
+            background-color: darkblue;
+        }
+
+        /* Gray color with message for all other cases */
+        .verify-host-button:not([data-role='User'][data-applyHost='0']):not([data-role='User'][data-applyHost='1']):not([data-role='Host'][data-applyHost='1']) {
+            background-color: gray;
+            color: white;
+            cursor: not-allowed;
+        }
 /* Set specific icon sizes */
 .profile-icon {
     width: 50px; /* Adjust as needed */
