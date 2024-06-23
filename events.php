@@ -12,7 +12,7 @@
 
     $conn = OpenCon();
 
-    $sql = "SELECT * FROM event WHERE eventID IN (SELECT eventID FROM eventuser WHERE userID = $userId)";
+    $sql = "SELECT * FROM event WHERE eventID IN (SELECT eventID FROM eventuser WHERE userID = $userId) AND eventDate > CURDATE()";
     $result = $conn->query($sql);
 
     $events = array();
@@ -26,7 +26,7 @@
             $eventTime = $row['eventTime'];
             $eventLocation = $row['eventLocation'];
             $eventCapacity = $row['eventCapacity'];
-            $eventPicture = 'data:image/jpeg;base64,'.base64_encode($row['eventPicture']);
+            $eventPicture = 'data:image/jpg;charset-utf8;base64,'.base64_encode($row['eventPicture']);
             $eventDescription = $row['eventDescription'];
             $hostId = $row['userID'];
             
@@ -57,7 +57,7 @@
 
     CloseCon($conn);
 
-    function DisplayEvents($events, $userId){
+    function DisplayEvents($events, $userId, $userRole){
         foreach ($events as $event) {
             echo('
                 <div class="event-container">
@@ -77,6 +77,44 @@
                     </div>
                 </div>
             ');
+        }
+        if ($userRole == 'Host'){
+            echo ("
+                <img id='AddEventsImgButton' src='images/add.png' alt='Add'>
+                <div class='add-events'>
+                    <hr><br>
+                    <form action='events/add_events.php' method='post' enctype='multipart/form-data'>
+                        <p>Title:<br><br><input type='text' name='eventsTitle' id='eventsTitle' required></p>
+                        <p>Date:<br><br><input type='date' name='eventsDate' id='eventsDate' required></p>
+                        <p>Time:<br><br><input type='time' name='eventsTime' id='eventsTime' required></p>
+                        <p>Venue:<br><br><input type='text' name='eventsVenue' id='eventsVenue' required></p>
+                        <p>Fee (RM):<br><br><input type='number' name='eventsFee' id='eventsFee' required></p>
+                        <p>Capacity:<br><br><input type='number' name='eventsCapacity' id='eventsCapacity' required></p>
+                        <p>Image:<br><br><input type='file' name='eventsImage' id='eventsImage' required></p>
+                        <p>Description:<br><br><textarea name='eventsDescription' id='eventsDescription' required></textarea></p>
+                        <input type='hidden' name='userId' value='".$userId."'>
+                        <div class='button-container'>
+                            <button id='createButton'>Create</button>
+                            <button id='cancelButton'>Cancel</button>
+                        </div>
+                    </form>
+                </div>  
+            ");
+            echo ("
+                <script>
+                    var addEventsImgButton = document.getElementById('AddEventsImgButton');
+                    addEventsImgButton.onclick = function(){
+                        var addEvents = document.getElementsByClassName('add-events')[0];
+                        addEvents.style.display = addEvents.style.display == 'none' ? 'block' : 'none';
+                    }
+                    var cancelButton = document.getElementsByClassName('add-events')[0].getElementsByTagName('button')[1];
+                    cancelButton.onclick = function(){
+                        event.preventDefault();
+                        var addEvents = document.getElementsByClassName('add-events')[0];
+                        addEvents.style.display = 'none';
+                    }
+                </script>
+            ");
         }
     }
 ?>
@@ -131,7 +169,7 @@
     </div>
     <div class="main">
         <?php
-            DisplayEvents($events, $userId);
+            DisplayEvents($events, $userId, $userRole);
         ?>
     </div>
     <?php include 'footer.php' ?>

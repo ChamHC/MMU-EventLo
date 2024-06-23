@@ -1,3 +1,9 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 .event-container{
     border: 2px solid #ff914d;
     border-radius: 10px;
@@ -5,6 +11,7 @@
     margin: 10px;
     display: flex;
     align-items: center;
+    width: 90%;
 }
 .event-container img {
     margin-right: 20px;
@@ -55,4 +62,110 @@
 .event-details button#leaveButton:hover {
     color: white;
     background-color: black;
+}
+
+/* Add Events */
+#AddEventsImgButton {
+    width: 50px;
+    height: 50px;
+    margin: 10px 0 20px 0;
+    cursor: pointer;
+}
+.add-events {
+    display: none;
+    width: 90%;
+    margin: 0 0 20px 0;
+}
+.add-events #eventsTitle {
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: lightgray;
+    font-weight: bold;
+}
+.add-events #eventsDescription {
+    border-radius: 10px;
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: lightgray;
+    font-weight: bold;
+    border: 2px solid black;
+}
+.add-events #eventsDate {
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: lightgray;
+    font-weight: bold;
+}
+.add-events #eventsTime {
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: lightgray;
+    font-weight: bold;
+}
+.add-events #eventsVenue {
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: lightgray;
+    font-weight: bold;
+}
+.add-events #eventsFee {
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: lightgray;
+    font-weight: bold;
+}
+.add-events #eventsCapacity {
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: lightgray;
+    font-weight: bold;
+}
+.add-events #eventsImage {
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: lightgray;
+    font-weight: bold;
+    border: 2px solid black;
+}
+.add-events .button-container {
+    display: flex;
+    justify-content: space-between;
+}
+.add-events #createButton {
+    border-radius: 5px;
+    padding: 10px;
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    width: 49%;
+}
+.add-events #cancelButton {
+    border-radius: 5px;
+    padding: 10px;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    float: right;
+    width: 49%;
+}
+.add-events textarea {
+    font-family: Arial, sans-serif;
 }
