@@ -10,7 +10,7 @@ if ($userRole == null) {
     $userId = $_SESSION['mySession'];
 }
 
-// Open database connection (assuming OpenCon() and CloseCon() are defined elsewhere)
+// Open database connection
 $conn = OpenCon();
 
 if ($conn->connect_error) {
@@ -39,14 +39,15 @@ while ($row = $result->fetch_assoc()) {
     $answer = htmlspecialchars($row['answer']);
     $severityQuestion = $row['severityQuestion'];
 
-    $faq = array(
-        'faqId' => $faqId,
-        'question' => $question,
-        'answer' => $answer
-    );
-
-    // Push FAQ into appropriate severityQuestion group
-    $groupedFaqs[$severityQuestion][] = $faq;
+    if (!empty($severityQuestion) && isset($groupedFaqs[$severityQuestion])) {
+        $faq = array(
+            'faqId' => $faqId,
+            'question' => $question,
+            'answer' => $answer
+        );
+        // Push FAQ into appropriate severityQuestion group
+        $groupedFaqs[$severityQuestion][] = $faq;
+    }
 }
 
 // Close database connection
@@ -69,21 +70,16 @@ CloseCon($conn);
     <div class="main">
         <h1 class="title">Frequently Asked Questions (FAQ)</h1>
         <div class="faq-container">
-            <?php
-            foreach (['High', 'Medium', 'Low'] as $severityQuestion) {
-                if (!empty($groupedFaqs[$severityQuestion])) {
-                    echo "<div class='severity-section'>";
-                    echo "<h2 class='severity-title'>$severityQuestion Severity</h2>";
-                    foreach ($groupedFaqs[$severityQuestion] as $faq) {
-                        echo "<div class='faq-item'>";
-                        echo "<h3 class='question'>" . $faq['question'] . "<span class='toggle-icon'>></span></h3>";
-                        echo "<p class='answer'>" . $faq['answer'] . "</p>";
-                        echo "</div>";
-                    }
-                    echo "</div>";
-                }
-            }
-            ?>
+            <?php foreach (['High', 'Medium', 'Low'] as $severityQuestion): ?>
+                <?php if (!empty($groupedFaqs[$severityQuestion])): ?>
+                    <?php foreach ($groupedFaqs[$severityQuestion] as $faq): ?>
+                        <div class="faq-item">
+                            <h3 class="question"><?= htmlspecialchars($faq['question']) ?><span class="toggle-icon">></span></h3>
+                            <p class="answer"><?= htmlspecialchars($faq['answer']) ?></p>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            <?php endforeach; ?>
         </div>
     </div>
     <?php include 'footer.php'; ?>
@@ -95,22 +91,15 @@ CloseCon($conn);
     </div>
 
     <script>
-        // Get all question elements
-        const questions = document.querySelectorAll('.question');
-
-        // Add click event listener to each question
-        questions.forEach(question => {
-            question.addEventListener('click', function() {
-                // Find the answer element under current question
-                const answer = this.nextElementSibling;
-
-                // Toggle answer display
+        document.querySelectorAll('.question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
                 if (answer.style.display === 'block') {
                     answer.style.display = 'none';
-                    this.querySelector('.toggle-icon').textContent = '>';
+                    question.querySelector('.toggle-icon').textContent = '>';
                 } else {
                     answer.style.display = 'block';
-                    this.querySelector('.toggle-icon').textContent = 'v';
+                    question.querySelector('.toggle-icon').textContent = 'v';
                 }
             });
         });
