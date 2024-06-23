@@ -80,7 +80,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['signUp'])) {
 
     $conn = OpenCon();
 
-    // 获取当前最大的 userID 并自动生成下一个 userID
+    // Check if the username already exists
+    $sql = "SELECT COUNT(*) AS count FROM user WHERE username = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $stmt->bind_result($count);
+    $stmt->fetch();
+    $stmt->close();
+
+    if ($count > 0) {
+        echo "<script>
+                    alert('The username has been registered, please change another username');
+                    window.history.back();
+                </script>";
+        CloseCon($conn);
+        exit;
+    }
+
+    // Get the current largest userID and automatically generate the next userID
     $sql = "SELECT MAX(userID) AS maxUserID FROM user";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();

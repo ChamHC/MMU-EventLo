@@ -37,11 +37,13 @@ label {
 input[type="text"],
 input[type="password"],
 input[type="email"],
-input[type="date"] {
+input[type="date"],
+input[list] {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+
 
 .gender p {
     display: flex;
@@ -55,7 +57,7 @@ input[type="date"] {
 }
 
 input[type="radio"] {
-    margin-right: 5px;
+    margin-right: 15px;
 }
 
 .sign-up-btn {
