@@ -86,7 +86,7 @@ CloseCon($conn);
 
     <div class="faq-icon-container">
         <a href="faqForm.php">
-            <img src="images/faq_icon.png" alt="FAQ Icon">
+            <img src="images/faq icon.png" alt="FAQ Icon">
         </a>
     </div>
 
