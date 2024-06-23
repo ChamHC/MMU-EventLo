@@ -8,16 +8,30 @@
 
     if(!empty($_FILES["eventsImage"]["name"])){
         $fileName = basename($_FILES["eventsImage"]["name"]);
+        $fileSize = $_FILES["eventsImage"]["size"];
         $fileExt = pathinfo($fileName, PATHINFO_EXTENSION);
         $fileType = strtolower($fileExt);
 
         $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
         if(in_array($fileType, $allowTypes)){
-            $image = $_FILES['eventsImage']['tmp_name'];
-            $imgContent = file_get_contents($image);
+            if($fileSize <= 1048576){ 
+                $image = $_FILES['eventsImage']['tmp_name'];
+                $imgContent = file_get_contents($image);
+            } else {
+                echo "<script>alert('File size exceeds 1MB. Please upload a smaller file.');</script>";
+                echo "<script>window.location.href='../events.php';</script>";
+                exit;
+            }
+        }
+        else{
+            echo "<script>alert('Sorry, only JPG, JPEG, PNG, and GIF files are allowed.');</script>";
+            echo "<script>window.location.href='../events.php';</script>";
+            exit;
         }
     } else {
         echo "<script>alert('Please select an image file to upload.');</script>";
+        echo "<script>window.location.href='../events.php';</script>";
+        exit;
     }
 
     $eventsTitle = $_POST['eventsTitle'];

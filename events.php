@@ -85,7 +85,7 @@
                     <hr><br>
                     <form action='events/add_events.php' method='post' enctype='multipart/form-data'>
                         <p>Title:<br><br><input type='text' name='eventsTitle' id='eventsTitle' required></p>
-                        <p>Date:<br><br><input type='date' name='eventsDate' id='eventsDate' required></p>
+                        <p>Date:<br><br><input type='date' name='eventsDate' id='eventsDate' required min='".date("Y-m-d")."'></p>
                         <p>Time:<br><br><input type='time' name='eventsTime' id='eventsTime' required></p>
                         <p>Venue:<br><br><input type='text' name='eventsVenue' id='eventsVenue' required></p>
                         <p>Fee (RM):<br><br><input type='number' name='eventsFee' id='eventsFee' required></p>
