@@ -90,7 +90,7 @@
                         <p>Venue:<br><br><input type='text' name='eventsVenue' id='eventsVenue' required></p>
                         <p>Fee (RM):<br><br><input type='number' name='eventsFee' id='eventsFee' required></p>
                         <p>Capacity:<br><br><input type='number' name='eventsCapacity' id='eventsCapacity' required></p>
-                        <p>Image:<br><br><input type='file' name='eventsImage' id='eventsImage' required></p>
+                        <p>Image (Less Than 1MB):<br><br><input type='file' name='eventsImage' id='eventsImage' required></p>
                         <p>Description:<br><br><textarea name='eventsDescription' id='eventsDescription' required></textarea></p>
                         <input type='hidden' name='userId' value='".$userId."'>
                         <div class='button-container'>
