@@ -6,9 +6,10 @@ if ($userRole == null) {
     header('Location: index.php');
     exit();
 } else {
-    $userId = $_SESSION['mySession'];
+    $userId = $_SESSION['mySession']; // Assuming 'mySession' contains the user ID after login
 }
 
+// Open database connection
 $conn = OpenCon();
 
 // Get current date and time
@@ -25,15 +26,19 @@ if ($stmt === false) {
     die('Prepare failed: ' . htmlspecialchars($conn->error));
 }
 
+// Bind parameters and execute query
 $stmt->bind_param("ss", $userId, $currentDateTime);
 if (!$stmt->execute()) {
     die('Execute failed: ' . htmlspecialchars($stmt->error));
 }
 
+// Get result set
 $result = $stmt->get_result();
 $events = array();
 
+// Fetch and process each row from the result set
 while ($row = $result->fetch_assoc()) {
+    // Prepare event data for display
     $event = array(
         'eventId' => $row['eventID'],
         'eventName' => htmlspecialchars($row['eventName']),
@@ -42,13 +47,14 @@ while ($row = $result->fetch_assoc()) {
         'eventTime' => htmlspecialchars($row['eventTime']),
         'eventLocation' => htmlspecialchars($row['eventLocation']),
         'eventCapacity' => htmlspecialchars($row['eventCapacity']),
-        'eventPicture' => 'data:image/jpeg;base64,' . base64_encode($row['eventPicture']),
+        'eventPicture' => 'data:image/jpeg;base64,' . base64_encode($row['eventPicture']), // Convert picture to base64 for display
         'eventDescription' => htmlspecialchars($row['eventDescription'])
     );
+    // Add event data to events array
     $events[] = $event;
 }
 
-// Close statement and connection
+// Close statement and database connection
 $stmt->close();
 CloseCon($conn);
 ?>

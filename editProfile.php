@@ -1,16 +1,17 @@
 <?php
 // Check user role and session
-require_once 'trackRole.php';
-$userRole = checkUserRole();
+require_once 'trackRole.php'; // Include file that checks user role
+$userRole = checkUserRole(); // Check the user's role using a function from an external file
 if ($userRole == null) {
-    header('Location: index.php');
+    header('Location: index.php'); // Redirect to index.php if user role is not valid
     exit();
 } else {
-    $userId = $_SESSION['mySession'];
+    $userId = $_SESSION['mySession']; // Retrieve user ID from the session
 }
 
 // Valid countries array
 $validCountries = [
+    // List of valid countries for the dropdown menu
     "AFGHANISTAN", "ALBANIA", "ALGERIA", "ANDORRA", "ANGOLA", "ANTIGUA AND BARBUDA", "ARGENTINA", "ARMENIA", "AUSTRALIA",
     "AUSTRIA", "AZERBAIJAN", "BAHAMAS", "BAHRAIN", "BANGLADESH", "BARBADOS", "BELARUS", "BELGIUM", "BELIZE", "BENIN",
     "BHUTAN", "BOLIVIA", "BOSNIA AND HERZEGOVINA", "BOTSWANA", "BRAZIL", "BRUNEI", "BULGARIA", "BURKINA FASO", "BURUNDI",
@@ -34,21 +35,17 @@ $validCountries = [
     "UZBEKISTAN", "VANUATU", "VATICAN CITY", "VENEZUELA", "VIETNAM", "YEMEN", "ZAMBIA", "ZIMBABWE"
 ];
 
-// Initialize error messages
+// Initialize error messages array
 $errors = [];
-
-// Include database connection and other necessary functions
-
-// Check user role and obtain user ID from session
 
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate form inputs
-    $username = $_POST['username'];
-    $gender = $_POST['gender'];
-    $dateOfBirth = $_POST['dateOfBirth'];
-    $contactNum = $_POST['contactNum'];
-    $country = $_POST['country'];
+    $username = $_POST['username']; // Retrieve and validate username input
+    $gender = $_POST['gender']; // Retrieve and validate gender input
+    $dateOfBirth = $_POST['dateOfBirth']; // Retrieve and validate date of birth input
+    $contactNum = $_POST['contactNum']; // Retrieve and validate contact number input
+    $country = $_POST['country']; // Retrieve and validate country input
 
     // Validate username
     if (!preg_match("/^[a-zA-Z]+(?: [a-zA-Z]+)*$/", $username)) {
@@ -82,15 +79,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // If no errors, proceed with database update
     if (empty($errors)) {
         // Perform database update
-        $conn = OpenCon();
+        $conn = OpenCon(); // Connect to the database
 
         // Prepare update statement
         $sql = "UPDATE user SET username=?, gender=?, dateOfBirth=?, contactNum=?, country=? WHERE userID=?";
-        $stmt = $conn->prepare($sql);
+        $stmt = $conn->prepare($sql); // Prepare SQL statement
 
         // Bind parameters and execute update
-        $stmt->bind_param("sssssi", $username, $gender, $dateOfBirth, $contactNum, $country, $userId);
-        $stmt->execute();
+        $stmt->bind_param("sssssi", $username, $gender, $dateOfBirth, $contactNum, $country, $userId); // Bind parameters
+        $stmt->execute(); // Execute SQL statement
 
         // Redirect to profile.php regardless of update success
         header('Location: profile.php');
@@ -99,26 +96,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Fetch user details for pre-populating the form
-$conn = OpenCon();
+$conn = OpenCon(); // Connect to the database
 $sql = "SELECT * FROM user WHERE userID = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $userId);
-$stmt->execute();
-$result = $stmt->get_result();
+$stmt = $conn->prepare($sql); // Prepare SQL statement
+$stmt->bind_param("i", $userId); // Bind parameter
+$stmt->execute(); // Execute SQL statement
+$result = $stmt->get_result(); // Get result from executed SQL statement
 
 if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $username = $row['username'];
-    $gender = $row['gender'];
-    $dateOfBirth = $row['dateOfBirth'];
-    $contactNum = $row['contactNum'];
-    $country = $row['country'];
+    $row = $result->fetch_assoc(); // Fetch user details
+    $username = $row['username']; // Assign username from fetched details
+    $gender = $row['gender']; // Assign gender from fetched details
+    $dateOfBirth = $row['dateOfBirth']; // Assign date of birth from fetched details
+    $contactNum = $row['contactNum']; // Assign contact number from fetched details
+    $country = $row['country']; // Assign country from fetched details
 } else {
-    echo "User with ID $userId not found";
+    echo "User with ID $userId not found"; // Display message if user not found
 }
 
 // Close database connection
-CloseCon($conn);
+CloseCon($conn); // Close database connection
 ?>
 
 <!DOCTYPE html>
@@ -133,7 +130,7 @@ CloseCon($conn);
     <title>Edit Profile</title>
 </head>
 <body>
-    <?php include 'header.php'; ?>
+    <?php include 'header.php'; ?> <!-- Include header.php for consistency -->
 
     <div class="edit-profile-container">
         <h2>Edit Profile</h2>
@@ -141,36 +138,36 @@ CloseCon($conn);
         <?php
         // Display error messages if any
         if (!empty($errors)) {
-            echo '<div class="error-container">';
+            echo '<div class="error-container">'; // Start error container
             foreach ($errors as $error) {
-                echo '<p>' . htmlspecialchars($error) . '</p>';
+                echo '<p>' . htmlspecialchars($error) . '</p>'; // Display each error message
             }
-            echo '</div>';
+            echo '</div>'; // End error container
         }
         ?>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> <!-- Form action and method -->
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($username); ?>" required>
+            <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($username); ?>" required> <!-- Input field for username -->
             <label for="gender">Gender:</label>
-            <select id="gender" name="gender">
+            <select id="gender" name="gender"> <!-- Select dropdown for gender -->
                 <option value="Male" <?php if ($gender == 'Male') echo 'selected'; ?>>Male</option>
                 <option value="Female" <?php if ($gender == 'Female') echo 'selected'; ?>>Female</option>
                 <option value="N/A" <?php if ($gender == 'N/A') echo 'selected'; ?>>N/A</option>
             </select>
             <label for="dateOfBirth">Date of Birth:</label>
-            <input type="date" id="dateOfBirth" name="dateOfBirth" value="<?php echo htmlspecialchars($dateOfBirth); ?>" required>
+            <input type="date" id="dateOfBirth" name="dateOfBirth" value="<?php echo htmlspecialchars($dateOfBirth); ?>" required> <!-- Input field for date of birth -->
             <label for="contactNum">Contact Number:</label>
-            <input type="text" id="contactNum" name="contactNum" value="<?php echo htmlspecialchars($contactNum); ?>" required>
+            <input type="text" id="contactNum" name="contactNum" value="<?php echo htmlspecialchars($contactNum); ?>" required> <!-- Input field for contact number -->
             <label for="country">Country:</label>
-            <select id="country" name="country" required>
+            <select id="country" name="country" required> <!-- Select dropdown for country -->
                 <?php foreach ($validCountries as $c) { ?>
-                    <option value="<?php echo $c; ?>" <?php if ($country == $c) echo 'selected'; ?>><?php echo $c; ?></option>
+                    <option value="<?php echo $c; ?>" <?php if ($country == $c) echo 'selected'; ?>><?php echo $c; ?></option> <!-- Populate options based on valid countries -->
                 <?php } ?>
             </select>
-            <button type="submit">Save Changes</button>
+            <button type="submit">Save Changes</button> <!-- Submit button -->
         </form>
     </div>
 
-    <?php include 'footer.php'; ?>
+    <?php include 'footer.php'; ?> <!-- Include footer.php for consistency -->
 </body>
 </html>

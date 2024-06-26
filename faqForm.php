@@ -93,6 +93,7 @@ function test_input($data) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include CSS files for styling -->
     <link rel="stylesheet" href="css/resetStyle.css">
     <link rel="stylesheet" href="css/headerStyle.css">
     <link rel="stylesheet" href="css/footerStyle.css">
@@ -100,15 +101,18 @@ function test_input($data) {
     <title>FAQ Question Form</title>
 </head>
 <body>
+    <!-- Include the header section -->
     <?php include 'header.php'; ?>
     <div class="main">
         <h1 class="form-title">FAQ Question Form</h1>
         <p>Please ask your question below:</p>
 
         <?php if (!empty($message)) : ?>
+            <!-- Display submission message -->
             <div class="message"><?php echo $message; ?></div>
         <?php endif; ?>
 
+        <!-- Form for submitting a question -->
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
             <div class="form-group">
                 <label for="question">Question:</label>
@@ -118,6 +122,7 @@ function test_input($data) {
             <button type="submit" class="submit-button">Submit</button>
         </form>
     </div>
+    <!-- Include the footer section -->
     <?php include 'footer.php'; ?>
 </body>
 </html>
